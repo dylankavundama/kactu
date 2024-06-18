@@ -108,6 +108,7 @@ const NewWidget(images:  [
                         );
                       },
                       child: Widget_UI(
+                          id: post[index]['id'],
                         date: post[index]['dateN'],
                         desc: post[index]['detail'],
                         titre: post[index]['titre'],

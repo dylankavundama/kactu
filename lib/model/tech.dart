@@ -95,6 +95,7 @@ class _Tech_PageState extends State<Tech_Page> {
                         );
                       },
                       child: Widget_UI(
+                        id: '',
                         date: post[index]['dateN'],
                         desc: post[index]['detail'],
                         titre: post[index]['titre'],

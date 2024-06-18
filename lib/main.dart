@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ibapp/Util/style.dart';
-import 'package:ibapp/model/actualite.dart';
 import 'HomePage.dart';
 import 'nav.dart'; 
 import 'package:onesignal_flutter/onesignal_flutter.dart';
@@ -46,7 +45,7 @@ class MyApp extends StatelessWidget {
             ColorScheme.fromSwatch().copyWith(secondary: CouleurPrincipale),
       ),
       debugShowCheckedModeBanner: false,
-      home:  Actualite_Page(),
+      home:  HomePage(),
     );
   }
 }

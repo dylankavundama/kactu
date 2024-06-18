@@ -94,7 +94,7 @@ class _Sport_PageState extends State<Sport_Page> {
                           }),
                         );
                       },
-                      child: Widget_UI(
+                      child: Widget_UI(  id: '',
                         date: post[index]['dateN'],
                         desc: post[index]['detail'],
                         titre: post[index]['titre'],

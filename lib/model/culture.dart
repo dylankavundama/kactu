@@ -95,6 +95,7 @@ class _Culture_PageState extends State<Culture_Page> {
                         );
                       },
                       child: Widget_UI(
+                          id: '',
                         date: post[index]['dateN'],
                         desc: post[index]['detail'],
                         titre: post[index]['titre'],

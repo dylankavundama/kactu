@@ -95,6 +95,7 @@ class _Event_PageState extends State<Event_Page> {
                         );
                       },
                       child: Widget_UI(
+                          id: '',
                         date: post[index]['dateN'],
                         desc: post[index]['detail'],
                         titre: post[index]['titre'],

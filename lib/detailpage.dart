@@ -252,6 +252,7 @@ class _DetailPageState extends State<DetailPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              
               Padding(
                 padding: const EdgeInsets.only(top: 10.0, bottom: 5.0),
                 child: Column(
@@ -279,55 +280,29 @@ class _DetailPageState extends State<DetailPage> {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    Row(
-                      children: [
-                        // GestureDetector(
-                        //   onTap: () {
-                        //     Navigator.push(
-                        //       context,
-                        //       MaterialPageRoute(
-                        //         builder: (context) => FullScreenImagePage(
-                        //             imageUrl:
-                        //                 "$Adress_IP/profil/${widget.image1}"),
-                        //       ),
-                        //     );
-                        //   },
-                        //   child: SizedBox(
-                        //     width: MediaQuery.of(context).size.width,
-                        //     height: 300,
-                        //     child: Image.network(
-                        //       "$Adress_IP/profil/${widget.image1}",
-                        //       fit: BoxFit.cover,
-                        //     ),
-                        //   ),
-                        // ),
-                        // GestureDetector(
-                        //   onTap: () {
-                        //     Navigator.push(
-                        //       context,
-                        //       MaterialPageRoute(
-                        //         builder: (context) => FullScreenImagePage(
-                        //             imageUrl:
-                        //                 "$Adress_IP/profil/${widget.image2}"),
-                        //       ),
-                        //     );
-                        //   },
-                        //   child: SizedBox(
-                        //     width: MediaQuery.of(context).size.width,
-                        //     height: 300,
-                        //     child: Image.network(
-                        //       "$Adress_IP/profil/${widget.image2}",
-                        //       fit: BoxFit.cover,
-                        //     ),
-                        //   ),
-                        // ),
-                      ],
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      height: 300,
+                      child: Image.network(
+                        "$Adress_IP/profil/${widget.image1}",
+                        fit: BoxFit.cover,
+                      ),
                     ),
+            
                   ],
                 ),
               ),
               Text(widget.desc, style: DescStyle),
+              
               Text(widget.date, style: DescStyle),
+                      SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      height: 300,
+                      child: Image.network(
+                        "$Adress_IP/profil/${widget.image2}",
+                        fit: BoxFit.cover,
+                      ),
+                    ),
               const Divider(
                 thickness: 1,
               ),
@@ -425,7 +400,6 @@ class _DetailPageState extends State<DetailPage> {
                     }),
                   );
                 },
-                
                 child: Container(
                   alignment: Alignment.center,
                   margin: const EdgeInsets.only(bottom: 6.0),
