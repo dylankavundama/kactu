@@ -1,0 +1,6 @@
+{
+    "emulator.emulatorPathWindows": "D:\\Soft\\AndroidSDK\\emulator",
+    "emulator.emulatorPathMac": "D:\\Soft\\AndroidSDK\\emulator",
+    "emulator.emulatorPathLinux": "D:\\Soft\\AndroidSDK\\emulator",
+    "emulator.simulatorPath": "D:\\Soft\\AndroidSDK\\emulator"
+}
