@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // ignore: non_constant_identifier_names
-Color CouleurPrincipale = Colors.amberAccent;
+Color CouleurPrincipale = Colors.amber;
 
 TextStyle TitreStyle = GoogleFonts.acme(fontSize: 24, color: Colors.black);
 

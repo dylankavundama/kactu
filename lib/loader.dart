@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:ibapp/HomePage.dart';
 
-
 class Loading extends StatefulWidget {
   const Loading({Key? key}) : super(key: key);
 
@@ -14,13 +13,15 @@ class _LoadingState extends State<Loading> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 5), page);
+    Timer(const Duration(seconds: 3), page);
   }
 
   page() {
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (BuildContext context) =>   HomePage()),
+      MaterialPageRoute(
+        builder: (BuildContext context) => HomePage(),
+      ),
       (Route<dynamic> route) => false,
     );
   }
@@ -37,17 +38,18 @@ class _LoadingState extends State<Loading> {
               height: screenHeight * 0.2,
             ),
             Center(
-              child: Image.asset('asset/c.jpg'),
+              child: Image.asset('assets/logo.png'),
             ),
             const Spacer(),
             TextButton.icon(
               onPressed: () {},
               icon: const Icon(
-                Icons.new_releases_outlined,
-                color: Colors.black,
+                Icons.build,
+                size: 19,
+                color: Colors.amber,
               ),
               label: const Text(
-                'From CFPI',
+                'Copyright Kasindi-Lubiriha 2024',
                 style: TextStyle(color: Colors.black),
               ),
             ),

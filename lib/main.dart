@@ -17,7 +17,7 @@ void main() async {
   // FlutterNativeSplash.remove();
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
-      statusBarColor: Colors.teal,
+      statusBarColor: Colors.amber,
       statusBarBrightness: Brightness.light,
     ),
   );

@@ -38,6 +38,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    - assets/art/
     - lib/assets/animations/splashscreen.json
   
   fonts:

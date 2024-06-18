@@ -43,10 +43,11 @@ class _HomePageState extends State<HomePage>
   late var _counter = _gameLength;
 
   final String _adUnitIdd = Platform.isAndroid
-      ? 'ca-app-pub-7329797350611067/7003775471'
-      : 'ca-app-pub-7329797350611067/7003775471';
-      // ? 'ca-app-pub-7329797350611067/5117094069'
-      // : 'ca-app-pub-7329797350611067/5117094069';
+      // ? 'ca-app-pub-6009510012427568/4123691533'
+      // :'ca-app-pub-6009510012427568/4123691533';
+
+      ? '': '';
+
 
   void _startNewGame() {
     setState(() => _counter = _gameLength);
@@ -96,7 +97,8 @@ class _HomePageState extends State<HomePage>
       _interstitialAd?.show();
     });
   }
-
+//////////////////////////////
+///
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.top]);
@@ -122,8 +124,8 @@ class _HomePageState extends State<HomePage>
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      'KA',
-                      style: TextStyle(color: CouleurPrincipale),
+                      'K',
+                      style: TextStyle(color: CouleurPrincipale,fontWeight: FontWeight.bold),
                     ),
                     const Padding(
                       padding: EdgeInsets.only(right: 0),
@@ -192,10 +194,10 @@ class NewWidget extends StatelessWidget {
       items: _images.map((imagePath) {
         return Builder(
           builder: (BuildContext context) {
-            return Image.network(
+            return Image.asset(
               imagePath,
-              fit: BoxFit.contain,
-              height: 222,
+              fit: BoxFit.cover,
+              height: 500,
               width: MediaQuery.of(context).size.width,
             );
           },
