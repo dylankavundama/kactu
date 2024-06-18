@@ -122,14 +122,14 @@ class _HomePageState extends State<HomePage>
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      'IB',
+                      'KA',
                       style: TextStyle(color: CouleurPrincipale),
                     ),
                     const Padding(
                       padding: EdgeInsets.only(right: 0),
                     ),
                     const Text(
-                      'APP',
+                      'ACTU',
                       style: TextStyle(color: Colors.black),
                     ),
                   ],

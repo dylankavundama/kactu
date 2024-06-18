@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:flutter_tts/flutter_tts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:ibapp/Util/style.dart';
@@ -45,8 +44,8 @@ class _DetailPageState extends State<DetailPage> {
   bool _isLoaded = false;
 
   final String _adUnitId = Platform.isAndroid
-      ? 'ca-app-pub-7329797350611067/5003791578'
-      : 'ca-app-pub-7329797350611067/5003791578';
+      ? 'ca-app-pub-6009510012427568/6089806483'
+      : 'ca-app-pub-6009510012427568/6089806483';
 
   @override
   void didChangeDependencies() {
@@ -88,7 +87,7 @@ class _DetailPageState extends State<DetailPage> {
   @override
   void dispose() {
     _bannerAd?.dispose();
-    flutterTts.stop();
+ 
     super.dispose();
   }
 
@@ -146,18 +145,7 @@ class _DetailPageState extends State<DetailPage> {
     });
   }
 
-// Sythese
 
-  final FlutterTts flutterTts = FlutterTts();
-  TextEditingController textEditingController = TextEditingController();
-
-  @override
-  Future<void> speak(String text) async {
-    await flutterTts.setLanguage('fr-FR');
-    await flutterTts.setPitch(1.0);
-    await flutterTts.setSpeechRate(0.5);
-    await flutterTts.speak(text);
-  }
 
   int _views = 0; // Variable d'état pour stocker le nombre de vues
   Future<void> _incrementViews() async {
@@ -196,15 +184,7 @@ class _DetailPageState extends State<DetailPage> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          IconButton(
-            icon: const Icon(Icons.volume_up_sharp),
-            onPressed: () {
-              String text = '${widget.titre},${widget.desc}';
-              if (text.isNotEmpty) {
-                speak(text);
-              }
-            },
-          ),
+ 
           // IconButton(
           //   icon: Icon(
           //     isFavorite ? Icons.favorite : Icons.favorite_border_sharp,
@@ -382,53 +362,53 @@ class _DetailPageState extends State<DetailPage> {
           ),
         ),
       ),
-      bottomNavigationBar: SizedBox(
-        height: 73,
-        child: BottomAppBar(
-          color: Colors.white,
-          elevation: 0.0,
-          child: FittedBox(
-            fit: BoxFit.none,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) {
-                      return Channel();
-                    }),
-                  );
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  margin: const EdgeInsets.only(bottom: 6.0),
-                  height: 46,
-                  width: 186,
-                  decoration: BoxDecoration(
-                    color: CouleurPrincipale,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.grey,
-                        offset: Offset(0.0, 1.0),
-                        blurRadius: 6.0,
-                      ),
-                    ],
-                  ),
-                  child: const Text(
-                    "Le Direct",
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
+      // bottomNavigationBar: SizedBox(
+      //   height: 73,
+      //   child: BottomAppBar(
+      //     color: Colors.white,
+      //     elevation: 0.0,
+      //     child: FittedBox(
+      //       fit: BoxFit.none,
+      //       child: ClipRRect(
+      //         borderRadius: BorderRadius.circular(10),
+      //         child: GestureDetector(
+      //           onTap: () {
+      //             Navigator.push(
+      //               context,
+      //               MaterialPageRoute(builder: (context) {
+      //                 return Channel();
+      //               }),
+      //             );
+      //           },
+      //           child: Container(
+      //             alignment: Alignment.center,
+      //             margin: const EdgeInsets.only(bottom: 6.0),
+      //             height: 46,
+      //             width: 186,
+      //             decoration: BoxDecoration(
+      //               color: CouleurPrincipale,
+      //               borderRadius: BorderRadius.circular(10),
+      //               boxShadow: const [
+      //                 BoxShadow(
+      //                   color: Colors.grey,
+      //                   offset: Offset(0.0, 1.0),
+      //                   blurRadius: 6.0,
+      //                 ),
+      //               ],
+      //             ),
+      //             child: const Text(
+      //               "Le Direct",
+      //               style: TextStyle(
+      //                   fontSize: 18,
+      //                   fontWeight: FontWeight.w600,
+      //                   color: Colors.white),
+      //             ),
+      //           ),
+      //         ),
+      //       ),
+      //     ),
+      //   ),
+   //   ),
     );
   }
 }

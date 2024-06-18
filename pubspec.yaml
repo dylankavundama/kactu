@@ -7,7 +7,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_tts:
+  # flutter_tts:
   # photo_view: ^0.12.0
   google_sign_in:
   firebase_auth:
@@ -21,8 +21,8 @@ dependencies:
   image_picker:
   onesignal_flutter: ^3.0.0
   share:
-  video_player:
-  chewie: ^1.4.0
+  # video_player:
+  # chewie: ^1.4.0
   http: ^0.13.3
   carousel_slider: ^4.2.1
   

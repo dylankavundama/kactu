@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1013780506595:android:3c735f55b1d6ff5b36e2d6",
         "android_client_info": {
-          "package_name": "com.ibapp"
+          "package_name": "com.kactu"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "1013780506595-trac8gm00vk8rtveku9n6lf3js5qd1vu.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.ibapp",
+            "package_name": "com.kactu",
             "certificate_hash": "e061ef5a25008732b284447a8cb1fdc7b8f06637"
           }
         },

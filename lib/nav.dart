@@ -14,7 +14,7 @@ class _NavBarPageState extends State<NavBarPage> {
   NavigationDestinationLabelBehavior labelBehavior =
       NavigationDestinationLabelBehavior.alwaysShow;
   List<Widget> screen = [HomePage(),
-  Channel()
+  // Channel()
   ];
 
   @override
