@@ -1,5 +1,6 @@
-// import 'package:share/share.dart';
-import 'package:admin_ib/Util/style.dart';
+import 'package:ibapp/Util/style.dart';
+import 'package:share/share.dart';
+
 import 'package:flutter/material.dart';
 
 // ignore: camel_case_types
@@ -33,7 +34,7 @@ class Widget_UI extends StatelessWidget {
           child: SizedBox(
             // Prend toute la taille de l'écran
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 0.23,
+            height: MediaQuery.of(context).size.height * 0.30,
             // Enfant : Image
             child: Image.network(
               "$Adress_IP/profil/$image",
@@ -52,7 +53,6 @@ class Widget_UI extends StatelessWidget {
         Card(
           child: Column(
             children: [
-              
               Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: Text(
@@ -70,26 +70,19 @@ class Widget_UI extends StatelessWidget {
                     style: SousTStyle,
                   ),
 
-                  Text(
-                    'Categorie',
-                    style: SousTStyle,
-                  ),
-                  // IconButton(
-                  //   onPressed: () {},
-                  //   icon: Icon(Icons.share),
-                  // )
-                  // TextButton(
-                  //   onPressed: () {
-                  //     const url =
-                  //         'https://play.google.com/store/apps/details?id=com.admin_ib';
-                  //     Share.share(
-                  //         "profil :$titre,\n Description :$desc\n Telecharger l'Application admin_ib\n$url");
-                  //   },
-                  //   child: Text(
-                  //     'Partager',
-                  //     style: SousTStyle,
-                  //   ),
-                  // )
+             
+                  TextButton(
+                  onPressed: () {
+              const url =
+                  'https://play.google.com/store/apps/details?id=com.ibapp';
+              Share.share(
+                  "Actu :$titre},\n Description :${desc}\n Telecharger l'Application IB App\n$url");
+            },
+                    child: Text(
+                      'Partager',
+                      style: SousTStyle,
+                    ),
+                  )
                 ],
               )
             ],
