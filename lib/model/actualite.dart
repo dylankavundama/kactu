@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ibapp/HomePage.dart';
 import 'package:ibapp/UI.dart';
 import 'package:ibapp/detailpage.dart';
 
@@ -54,7 +55,12 @@ class _Actualite_PageState extends State<Actualite_Page> {
     super.initState();
     fetchPosts();
   }
-
+        final List<String> _images = [
+    'https://images.pexels.com/photos/10811920/pexels-photo-10811920.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+    'https://images.pexels.com/photos/23440189/pexels-photo-23440189/free-photo-of-loneliness.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    'https://images.pexels.com/photos/5641802/pexels-photo-5641802.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+    'https://images.pexels.com/photos/23440189/pexels-photo-23440189/free-photo-of-loneliness.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+  ];
   @override
   Widget build(BuildContext context) {
     return _isLoading
@@ -75,7 +81,14 @@ class _Actualite_PageState extends State<Actualite_Page> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: List.generate(
+                  children: [
+const NewWidget(images:  [
+    'https://images.pexels.com/photos/10811920/pexels-photo-10811920.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+    'https://images.pexels.com/photos/23440189/pexels-photo-23440189/free-photo-of-loneliness.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    'https://images.pexels.com/photos/5641802/pexels-photo-5641802.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+    'https://images.pexels.com/photos/23440189/pexels-photo-23440189/free-photo-of-loneliness.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+  ]),
+                    ...List.generate(
                     post.length,
                     (index) => GestureDetector(
                       onTap: () {
@@ -102,6 +115,7 @@ class _Actualite_PageState extends State<Actualite_Page> {
                       ),
                     ),
                   ),
+                  ]
                 ),
               );
   }

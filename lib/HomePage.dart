@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:ibapp/Util/style.dart';
-
+import 'package:carousel_slider/carousel_slider.dart';
 import 'model/actualite.dart';
 import 'model/culture.dart';
 import 'model/event.dart';
@@ -19,6 +19,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
+
+
   late TabController _tabController;
 
   @override
@@ -166,6 +168,39 @@ class _HomePageState extends State<HomePage>
       ),
       // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       // floatingActionButton: const Floating_Widget(),
+    );
+  }
+}
+class NewWidget extends StatelessWidget {
+  const NewWidget({
+    super.key,
+    required List<String> images,
+  }) : _images = images;
+
+  final List<String> _images;
+
+  @override
+  Widget build(BuildContext context) {
+    return CarouselSlider(
+      options: CarouselOptions(
+        autoPlay: true,
+        autoPlayInterval: Duration(seconds: 5),
+        enlargeCenterPage: true,
+        aspectRatio: 16 / 9,
+        viewportFraction: 0.8,
+      ),
+      items: _images.map((imagePath) {
+        return Builder(
+          builder: (BuildContext context) {
+            return Image.network(
+              imagePath,
+              fit: BoxFit.contain,
+              height: 222,
+              width: MediaQuery.of(context).size.width,
+            );
+          },
+        );
+      }).toList(),
     );
   }
 }
