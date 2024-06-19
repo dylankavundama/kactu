@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:ibapp/Util/style.dart';
-import 'package:ibapp/channel.dart';
+import 'package:kactu/Util/style.dart';
+import 'package:kactu/channel.dart';
 import 'package:line_icons/line_icon.dart';
 // import 'package:photo_view/photo_view.dart';
 import 'package:share/share.dart';
@@ -87,7 +87,7 @@ class _DetailPageState extends State<DetailPage> {
   @override
   void dispose() {
     _bannerAd?.dispose();
- 
+
     super.dispose();
   }
 
@@ -145,8 +145,6 @@ class _DetailPageState extends State<DetailPage> {
     });
   }
 
-
-
   int _views = 0; // Variable d'état pour stocker le nombre de vues
   Future<void> _incrementViews() async {
     try {
@@ -184,7 +182,6 @@ class _DetailPageState extends State<DetailPage> {
     return Scaffold(
       appBar: AppBar(
         actions: [
- 
           // IconButton(
           //   icon: Icon(
           //     isFavorite ? Icons.favorite : Icons.favorite_border_sharp,
@@ -205,7 +202,7 @@ class _DetailPageState extends State<DetailPage> {
           IconButton(
             onPressed: () {
               const url =
-                  'https://play.google.com/store/apps/details?id=com.ibapp';
+                  'https://play.google.com/store/apps/details?id=com.kactu';
               Share.share(
                   "Actu :$widget.titre},\n Description :${widget.desc}\n Telecharger l'Application IB App\n$url");
             },
@@ -232,7 +229,6 @@ class _DetailPageState extends State<DetailPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              
               Padding(
                 padding: const EdgeInsets.only(top: 10.0, bottom: 5.0),
                 child: Column(
@@ -268,21 +264,29 @@ class _DetailPageState extends State<DetailPage> {
                         fit: BoxFit.cover,
                       ),
                     ),
-            
                   ],
                 ),
               ),
               Text(widget.desc, style: DescStyle),
-              
+
               Text(widget.date, style: DescStyle),
-                      SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      height: 500,
-                      child: Image.network(
-                        "$Adress_IP/profil/${widget.image2}",
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+              ListTile(
+              
+                leading: const Icon(Icons.person),
+                title: Text(
+                  "Auteur : ${widget.auteur}",
+                  style: DescStyle,
+                ),
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: 500,
+                child: Image.network(
+                  "$Adress_IP/profil/${widget.image2}",
+                  fit: BoxFit.cover,
+                ),
+              ),
+
               const Divider(
                 thickness: 1,
               ),
@@ -337,7 +341,7 @@ class _DetailPageState extends State<DetailPage> {
       //       ),
       //     ),
       //   ),
-   //   ),
+      //   ),
     );
   }
 }

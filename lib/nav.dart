@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ibapp/HomePage.dart';
-import 'package:ibapp/Util/style.dart';
-import 'package:ibapp/channel.dart';
+import 'package:kactu/HomePage.dart';
+import 'package:kactu/Util/style.dart';
+import 'package:kactu/channel.dart';
 
 class NavBarPage extends StatefulWidget {
   const NavBarPage({super.key});

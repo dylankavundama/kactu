@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:share/share.dart';
 import 'package:http/http.dart' as http;
-import 'package:ibapp/Util/style.dart';
+import 'package:kactu/Util/style.dart';
 
 // ignore: camel_case_types
 class Widget_UI extends StatefulWidget {
@@ -148,7 +148,7 @@ class _Widget_UIState extends State<Widget_UI> {
             TextButton(
               onPressed: () {
                 const url =
-                    'https://play.google.com/store/apps/details?id=com.ibapp';
+                    'https://play.google.com/store/apps/details?id=com.kactu';
                 Share.share(
                     "Actu :${widget.titre}},\n Description :${widget.desc}\n Telecharger l'Application IB App\n$url");
               },
@@ -160,7 +160,7 @@ class _Widget_UIState extends State<Widget_UI> {
             TextButton(
               onPressed: () {
                 const url =
-                    'https://play.google.com/store/apps/details?id=com.ibapp';
+                    'https://play.google.com/store/apps/details?id=com.kactu';
                 Share.share(
                     "Actu :${widget.titre}},\n Description :${widget.desc}\n Telecharger l'Application IB App\n$url");
               },

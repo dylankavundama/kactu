@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:ibapp/Util/style.dart';
+import 'package:kactu/Util/style.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'model/actualite.dart';
 import 'model/culture.dart';
@@ -11,16 +11,16 @@ import 'model/event.dart';
 import 'model/sport.dart';
 import 'model/tech.dart';
 
-
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
-
-
   late TabController _tabController;
 
   @override
@@ -44,10 +44,9 @@ class _HomePageState extends State<HomePage>
 
   final String _adUnitIdd = Platform.isAndroid
       ? 'ca-app-pub-6009510012427568/4123691533'
-      :'ca-app-pub-6009510012427568/4123691533';
+      : 'ca-app-pub-6009510012427568/4123691533';
 
-      // ? '': '';
-
+  // ? '': '';
 
   void _startNewGame() {
     setState(() => _counter = _gameLength);
@@ -97,11 +96,13 @@ class _HomePageState extends State<HomePage>
       _interstitialAd?.show();
     });
   }
+
 //////////////////////////////
-///
+  ///
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.top]);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: [SystemUiOverlay.top]);
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
         statusBarColor: CouleurPrincipale,
@@ -125,7 +126,9 @@ class _HomePageState extends State<HomePage>
                   children: [
                     Text(
                       'K',
-                      style: TextStyle(color: CouleurPrincipale,fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          color: CouleurPrincipale,
+                          fontWeight: FontWeight.bold),
                     ),
                     const Padding(
                       padding: EdgeInsets.only(right: 0),
@@ -173,6 +176,7 @@ class _HomePageState extends State<HomePage>
     );
   }
 }
+
 class NewWidget extends StatelessWidget {
   const NewWidget({
     super.key,

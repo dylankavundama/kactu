@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ibapp/UI.dart';
-import 'package:ibapp/detailpage.dart';
+import 'package:kactu/UI.dart';
+import 'package:kactu/detailpage.dart';
 
 import 'package:http/http.dart' as http;
 

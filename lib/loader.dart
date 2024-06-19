@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:ibapp/HomePage.dart';
+import 'package:kactu/HomePage.dart';
 
 class Loading extends StatefulWidget {
   const Loading({Key? key}) : super(key: key);

@@ -4,7 +4,7 @@
 // // import 'package:flutter/services.dart';
 // import 'package:google_fonts/google_fonts.dart';
 // import 'package:google_mobile_ads/google_mobile_ads.dart';
-// import 'package:ibapp/Util/lecture.dart';
+// import 'package:kactu/Util/lecture.dart';
 // import '../Util/style.dart';
 
 // class VideoItem {

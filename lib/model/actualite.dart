@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:ibapp/HomePage.dart';
-import 'package:ibapp/UI.dart';
-import 'package:ibapp/detailpage.dart';
+import 'package:kactu/HomePage.dart';
+import 'package:kactu/UI.dart';
+import 'package:kactu/detailpage.dart';
 import 'package:http/http.dart' as http;
 import '../Util/style.dart';
 
+// ignore: camel_case_types
 class Actualite_Page extends StatefulWidget {
   const Actualite_Page({super.key});
 
@@ -13,6 +14,7 @@ class Actualite_Page extends StatefulWidget {
   State<Actualite_Page> createState() => _Actualite_PageState();
 }
 
+// ignore: camel_case_types
 class _Actualite_PageState extends State<Actualite_Page> {
   List<dynamic> post = [];
   bool _isLoading = false;
@@ -87,7 +89,10 @@ class _Actualite_PageState extends State<Actualite_Page> {
                           ),
                         ),
                         const NewWidget(images: [
+                          'assets/art/a.jpg',
+                          'assets/art/g.jpg',
                           'assets/art/b.jpg',
+                          'assets/art/f.jpg',
                           'assets/art/c.jpg',
                           'assets/art/d.jpg',
                           'assets/art/e.jpg',

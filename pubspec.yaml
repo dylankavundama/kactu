@@ -1,7 +1,7 @@
-name: ibapp
+name: kactu
 description: A new Flutter project.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
-version: 1.0.0+7
+version: 1.0.0+1
 environment:
   sdk: ">=2.19.6 <3.0.0"
 dependencies:
@@ -39,13 +39,13 @@ flutter:
   assets:
     - assets/
     - assets/art/
-    - lib/assets/animations/splashscreen.json
+    # - lib/assets/animations/splashscreen.json
   
   fonts:
     - family: Mulish
       fonts:
-        - asset: assets/fonts/Mulish-Light.ttf
-        - asset: assets/fonts/Mulish-SemiBold.ttf
+        # - asset: assets/fonts/Mulish-Light.ttf
+        # - asset: assets/fonts/Mulish-SemiBold.ttf
     - family: AssetAudioPlayer
       fonts:
         - asset: fonts/AssetAudioPlayer.ttf
