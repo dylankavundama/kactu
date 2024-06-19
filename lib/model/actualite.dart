@@ -97,6 +97,20 @@ class _Actualite_PageState extends State<Actualite_Page> {
                           'assets/art/d.jpg',
                           'assets/art/e.jpg',
                         ]),
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.start,
+                        //   crossAxisAlignment: CrossAxisAlignment.start,
+                        //   children: [
+                        //     Padding(
+                        //       padding: const EdgeInsets.all(8.0),
+                        //       child: Container(
+                        //         width: 150,
+                        //         height: 50,
+                        //         color: Colors.red,
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
                         ...List.generate(
                           post.length,
                           (index) => GestureDetector(

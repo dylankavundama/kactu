@@ -176,12 +176,13 @@ class _HomePageState extends State<HomePage>
     );
   }
 }
+ 
 
 class NewWidget extends StatelessWidget {
   const NewWidget({
-    super.key,
+    Key? key,
     required List<String> images,
-  }) : _images = images;
+  }) : _images = images, super(key: key);
 
   final List<String> _images;
 
@@ -198,11 +199,32 @@ class NewWidget extends StatelessWidget {
       items: _images.map((imagePath) {
         return Builder(
           builder: (BuildContext context) {
-            return Image.asset(
-              imagePath,
-              fit: BoxFit.cover,
-              height: 500,
-              width: MediaQuery.of(context).size.width,
+            return GestureDetector(
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return Dialog(
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.9,
+                        height: MediaQuery.of(context).size.height * 0.8,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(imagePath),
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
+              child: Image.asset(
+                imagePath,
+                fit: BoxFit.cover,
+                height: 500,
+                width: MediaQuery.of(context).size.width,
+              ),
             );
           },
         );
@@ -210,3 +232,4 @@ class NewWidget extends StatelessWidget {
     );
   }
 }
+
