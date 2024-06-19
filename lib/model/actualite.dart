@@ -6,7 +6,6 @@ import 'package:ibapp/detailpage.dart';
 import 'package:http/http.dart' as http;
 import '../Util/style.dart';
 
-// ignore: camel_case_types
 class Actualite_Page extends StatefulWidget {
   const Actualite_Page({super.key});
 
@@ -18,7 +17,7 @@ class _Actualite_PageState extends State<Actualite_Page> {
   List<dynamic> post = [];
   bool _isLoading = false;
 
-  fetchPosts() async {
+  Future<void> fetchPosts() async {
     setState(() {
       _isLoading = true;
     });
@@ -33,9 +32,10 @@ class _Actualite_PageState extends State<Actualite_Page> {
         post = resultat;
         _isLoading = false;
       });
-      // Cache the data
-      // prefs.setString('entreprise_data', response.body);
     } else {
+      setState(() {
+        _isLoading = false;
+      });
       throw Exception('Failed to load data');
     }
   }
@@ -48,65 +48,82 @@ class _Actualite_PageState extends State<Actualite_Page> {
 
   @override
   Widget build(BuildContext context) {
-    return _isLoading
-        ? Center(child: Image.asset(height: 500, 'assets/ld.avif'))
-        : post.isEmpty
-            ? Center(
-                child: Image.asset(
-                  'assets/error.png', // Chemin de votre image
-                  width: 200,
-                  height: 200,
+    return Scaffold(
+      // appBar: AppBar(
+      //   title: Text('Actualités'),
+      // ),
+      body: _isLoading
+          ? Center(
+              child: CircularProgressIndicator(
+                backgroundColor: Colors.black,
+                color: CouleurPrincipale,
+              ),
+            )
+          : post.isEmpty
+              ? Center(
+                  child: Image.asset(
+                    'assets/error.png',
+                    width: 200,
+                    height: 200,
+                  ),
+                )
+              : RefreshIndicator(
+                  color: CouleurPrincipale,
+                  backgroundColor: Colors.black,
+                  onRefresh: fetchPosts,
+                  child: SingleChildScrollView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Center(
+                            child: Text(
+                              'Top Artistes',
+                              style: TitreStyle,
+                            ),
+                          ),
+                        ),
+                        const NewWidget(images: [
+                          'assets/art/b.jpg',
+                          'assets/art/c.jpg',
+                          'assets/art/d.jpg',
+                          'assets/art/e.jpg',
+                        ]),
+                        ...List.generate(
+                          post.length,
+                          (index) => GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) {
+                                  return DetailPage(
+                                    date: post[index]['dateN'],
+                                    auteur: post[index]['auteur'],
+                                    id: post[index]['id'],
+                                    titre: post[index]['titre'],
+                                    desc: post[index]['detail'],
+                                    image1: post[index]['image1'],
+                                    image2: post[index]['image2'],
+                                  );
+                                }),
+                              );
+                            },
+                            child: Widget_UI(
+                              id: post[index]['id'],
+                              date: post[index]['dateN'],
+                              desc: post[index]['detail'],
+                              titre: post[index]['titre'],
+                              image: post[index]['image1'],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-              )
-            : SingleChildScrollView(
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Center(
-                          child: Text(
-                            'Top Artistes',
-                            style: TitreStyle,
-                          ),
-                        ),
-                      ),
-                      const NewWidget(images: [
-                        'assets/art/b.jpg',
-                        'assets/art/c.jpg',
-                        'assets/art/d.jpg',
-                        'assets/art/e.jpg',
-                      ]),
-                      ...List.generate(
-                        post.length,
-                        (index) => GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) {
-                                return DetailPage(
-                                  date: post[index]['dateN'],
-                                  auteur: post[index]['auteur'],
-                                  id: post[index]['id'],
-                                  titre: post[index]['titre'],
-                                  desc: post[index]['detail'],
-                                  image1: post[index]['image1'],
-                                  image2: post[index]['image2'],
-                                );
-                              }),
-                            );
-                          },
-                          child: Widget_UI(
-                            id: post[index]['id'],
-                            date: post[index]['dateN'],
-                            desc: post[index]['detail'],
-                            titre: post[index]['titre'],
-                            image: post[index]['image1'],
-                          ),
-                        ),
-                      ),
-                    ]),
-              );
+    );
   }
 }

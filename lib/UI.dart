@@ -111,7 +111,7 @@ class _Widget_UIState extends State<Widget_UI> {
             Text(
               widget.desc,
               style: SousTStyle,
-              maxLines: 3,
+              maxLines: 2,
             ),
           ],
         ),
@@ -153,7 +153,7 @@ class _Widget_UIState extends State<Widget_UI> {
                     "Actu :${widget.titre}},\n Description :${widget.desc}\n Telecharger l'Application IB App\n$url");
               },
               child: Text(
-                'Partager',
+                '',
                 style: SousTStyle,
               ),
             ),
@@ -174,7 +174,7 @@ class _Widget_UIState extends State<Widget_UI> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  const FaIcon(FontAwesomeIcons.eye,size: 19,),
+                    FaIcon(FontAwesomeIcons.eye,size: 19,color: CouleurPrincipale,),
                   Text(
                     '$_views',
                     style: SousTStyle,

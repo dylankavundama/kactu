@@ -43,10 +43,10 @@ class _HomePageState extends State<HomePage>
   late var _counter = _gameLength;
 
   final String _adUnitIdd = Platform.isAndroid
-      // ? 'ca-app-pub-6009510012427568/4123691533'
-      // :'ca-app-pub-6009510012427568/4123691533';
+      ? 'ca-app-pub-6009510012427568/4123691533'
+      :'ca-app-pub-6009510012427568/4123691533';
 
-      ? '': '';
+      // ? '': '';
 
 
   void _startNewGame() {

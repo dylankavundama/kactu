@@ -262,7 +262,7 @@ class _DetailPageState extends State<DetailPage> {
                   children: [
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
-                      height: 300,
+                      height: 500,
                       child: Image.network(
                         "$Adress_IP/profil/${widget.image1}",
                         fit: BoxFit.cover,
@@ -277,7 +277,7 @@ class _DetailPageState extends State<DetailPage> {
               Text(widget.date, style: DescStyle),
                       SizedBox(
                       width: MediaQuery.of(context).size.width,
-                      height: 300,
+                      height: 500,
                       child: Image.network(
                         "$Adress_IP/profil/${widget.image2}",
                         fit: BoxFit.cover,
@@ -286,78 +286,7 @@ class _DetailPageState extends State<DetailPage> {
               const Divider(
                 thickness: 1,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  // ListTile(
-                  //   onTap: () {
-                  //     // ignore: deprecated_member_use
-                  //     launch('https://${widget.source}');
-                  //   },
-                  //   leading: const Icon(Icons.web),
-                  //   title: Text(
-                  //     "Source : ${widget.source}",
-                  //     style: const TextStyle(fontWeight: FontWeight.w400),
-                  //     textAlign: TextAlign.start,
-                  //   ),
-                  //   trailing: const Icon(Icons.architecture),
-                  // ),
-                  ListTile(
-                    trailing: const Icon(Icons.architecture),
-                    leading: const Icon(Icons.person),
-                    title: Text(
-                      "Auteur : ${widget.auteur}",
-                      style: DescStyle,
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Card(
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: const FaIcon(
-                            FontAwesomeIcons.whatsapp,
-                            size: 30,
-                            color: Colors.green,
-                          ),
-                        ),
-                      ),
-                      Card(
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: const FaIcon(
-                            FontAwesomeIcons.facebook,
-                            size: 30,
-                            color: Colors.blue,
-                          ),
-                        ),
-                      ),
-                      Card(
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: FaIcon(
-                            FontAwesomeIcons.instagram,
-                            size: 30,
-                            color: Colors.red.shade400,
-                          ),
-                        ),
-                      ),
-                      Card(
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: const FaIcon(
-                            FontAwesomeIcons.linkedin,
-                            size: 30,
-                            color: Colors.blueAccent,
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
+              // social(widget: widget),
             ],
           ),
         ),
@@ -409,6 +338,91 @@ class _DetailPageState extends State<DetailPage> {
       //     ),
       //   ),
    //   ),
+    );
+  }
+}
+
+class social extends StatelessWidget {
+  const social({
+    super.key,
+    required this.widget,
+  });
+
+  final DetailPage widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        // ListTile(
+        //   onTap: () {
+        //     // ignore: deprecated_member_use
+        //     launch('https://${widget.source}');
+        //   },
+        //   leading: const Icon(Icons.web),
+        //   title: Text(
+        //     "Source : ${widget.source}",
+        //     style: const TextStyle(fontWeight: FontWeight.w400),
+        //     textAlign: TextAlign.start,
+        //   ),
+        //   trailing: const Icon(Icons.architecture),
+        // ),
+        ListTile(
+          trailing: const Icon(Icons.architecture),
+          leading: const Icon(Icons.person),
+          title: Text(
+            "Auteur : ${widget.auteur}",
+            style: DescStyle,
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Card(
+              child: IconButton(
+                onPressed: () {},
+                icon: const FaIcon(
+                  FontAwesomeIcons.whatsapp,
+                  size: 30,
+                  color: Colors.green,
+                ),
+              ),
+            ),
+            Card(
+              child: IconButton(
+                onPressed: () {},
+                icon: const FaIcon(
+                  FontAwesomeIcons.facebook,
+                  size: 30,
+                  color: Colors.blue,
+                ),
+              ),
+            ),
+            Card(
+              child: IconButton(
+                onPressed: () {},
+                icon: FaIcon(
+                  FontAwesomeIcons.instagram,
+                  size: 30,
+                  color: Colors.red.shade400,
+                ),
+              ),
+            ),
+            Card(
+              child: IconButton(
+                onPressed: () {},
+                icon: const FaIcon(
+                  FontAwesomeIcons.linkedin,
+                  size: 30,
+                  color: Colors.blueAccent,
+                ),
+              ),
+            ),
+          ],
+        )
+      ],
     );
   }
 }
