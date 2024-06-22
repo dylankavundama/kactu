@@ -120,7 +120,7 @@ class _HomePageState extends State<HomePage>
               iconTheme: IconThemeData(color: CouleurPrincipale),
               backgroundColor: Colors.white,
               title: Padding(
-                padding: const EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.only(top: 19),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,

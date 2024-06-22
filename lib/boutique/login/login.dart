@@ -1,16 +1,14 @@
- 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kactu/Util/style.dart';
 import 'package:kactu/boutique/Profil/UserPost.dart';
 import 'package:kactu/boutique/login/authServices.dart';
- 
- 
 
 class LoginHome extends StatefulWidget {
   const LoginHome({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _LoginHomeState createState() => _LoginHomeState();
 }
 
@@ -53,22 +51,23 @@ class _LoginHomeState extends State<LoginHome> {
               const Padding(
                 padding: EdgeInsets.only(top: 60),
               ),
-              Image.asset(
+              Image.network(
                 height: MediaQuery.of(context).size.height * 0.4,
-                'assets/lg.png',
+                'https://www.fpmarkets.com/assets/images/blogs/shutterstock_2014628297.webp',
               ),
               Center(
                 child: Text(
-                  '    Réserver à l’Administrateur  ',
+                  '    Bienvenue sur kasindi actu market ',
                   style: TitreStyle,
                 ),
               ),
 
               Padding(
-                padding: const EdgeInsets.all(1.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Center(
                   child: Text(
-                    "Assurez-vous d’avoir tous les droit",
+                    "L'espace dédié pour les vente ",
+                    textAlign: TextAlign.center,
                     style: DescStyle,
                   ),
                 ),
@@ -102,7 +101,7 @@ class _LoginHomeState extends State<LoginHome> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  'Google',
+                                  'Créer une boutique',
                                   style: GoogleFonts.abel(
                                       fontSize: 23,
                                       color: Colors.black,
@@ -115,38 +114,6 @@ class _LoginHomeState extends State<LoginHome> {
                       ),
                     ),
 
-              // ElevatedButton.icon(
-              //     onPressed: () => signIn(context),
-              //     icon:
-              //     label: Card(
-              //       child:
-              //     ),
-              //     style: ElevatedButton.styleFrom(
-              //       primary: CouleurPrincipale,
-              //       onPrimary: Colors.black,
-
-              //     ),
-              //   ),
-
-              // Padding(
-              //   padding: const EdgeInsets.only(top: 119),
-              //   child: Column(
-              //     mainAxisAlignment: MainAxisAlignment.end,
-              //     children: [
-              //       Text(
-              //         'En poursuivant, vous acceptez nos ',
-              //         style:
-              //             GoogleFonts.abel(fontSize: 15, color: Colors.black),
-              //       ),
-              //       Text(
-              //         "conditions d’utilisation et notre politique de confidentialité ",
-              //         style: GoogleFonts.abel(
-              //           fontSize: 15,
-              //           color: Colors.green,
-              //         ),
-              //       ),
-              //     ],
-              //   ),
               // ),
             ],
           ),

@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:kactu/UI.dart';
 import 'package:kactu/detailpage.dart';
 
@@ -82,8 +81,7 @@ class _Culture_PageState extends State<Culture_Page> {
                               desc: post[index]['detail'],
                               image1: post[index]['image1'],
                               image2: post[index]['image2'],
-                              
-       source: post[index]['source'],
+                              source: post[index]['source'],
                             );
                           }),
                         );

@@ -1,11 +1,9 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:kactu/UI.dart';
-import 'package:kactu/detailpage.dart';
-
 import 'package:http/http.dart' as http;
-
+import 'package:kactu/boutique/ProductDetailPage.dart';
+import 'package:kactu/boutique/boutique_ui.dart';
 import '../Util/style.dart';
 
 class Boutique extends StatefulWidget {
@@ -34,8 +32,6 @@ class _BoutiqueState extends State<Boutique> {
         post = resultat;
         _isLoading = false;
       });
-      // Cache the data
-      // prefs.setString('entreprise_data', response.body);
     } else {
       throw Exception('Failed to load data');
     }
@@ -49,55 +45,58 @@ class _BoutiqueState extends State<Boutique> {
 
   @override
   Widget build(BuildContext context) {
-    return _isLoading
-        ? Center(
-            child: CircularProgressIndicator(
-              color: CouleurPrincipale,
-            ),
-          )
-        : post.isEmpty
-            ? Center(
-                child: Image.asset(
-                  'assets/error.png', // Chemin de votre image
-                  width: 200,
-                  height: 200,
-                ),
-              )
-            : SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: List.generate(
-                    post.length,
-                    (index) => GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) {
-                            return DetailPage(
-                              date: post[index]['dateN'],
-                              auteur: post[index]['auteur'],
-                              id: '',
-                              titre: post[index]['titre'],
-                              desc: post[index]['detail'],
-                              image1: post[index]['image1'],
-                              image2: post[index]['image2'],
-                              
-       source: post[index]['source'],
-                            );
-                          }),
-                        );
-                      },
-                      child: Widget_UI(
-                        id: '',
-                        date: post[index]['dateN'],
-                        desc: post[index]['detail'],
-                        titre: post[index]['titre'],
-                        image: post[index]['image1'],
-                      ),
-                    ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: const Text('Boutique'),
+      ),
+      body: _isLoading
+          ? Center(
+              child: CircularProgressIndicator(
+                color: CouleurPrincipale,
+              ),
+            )
+          : post.isEmpty
+              ? Center(
+                  child: Image.asset(
+                    'assets/error.png', // Chemin de votre image
+                    width: 200,
+                    height: 200,
                   ),
+                )
+              : GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, // Number of items per row
+                    crossAxisSpacing: 10.0, // Spacing between items in a row
+                    mainAxisSpacing: 10.0, // Spacing between rows
+                    childAspectRatio: 0.7, // Aspect ratio of each item
+                  ),
+                  itemCount: post.length,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) {
+                              return ProductDetailPage(
+                                  prix: post[index]['prix'],
+                                  auteur: post[index]['auteur'],
+                                  id: '',
+                                  titre: post[index]['nom'],
+                                  desc: post[index]['detail'],
+                                  image1: post[index]['image1'],
+                                  image2: post[index]['image2'],
+                                  num: post[index]['num']);
+                            }),
+                          );
+                        },
+                        child: boutique_ui(
+                          prix: post[index]['prix'],
+                          titre: post[index]['nom'],
+                          image1: post[index]['image1'],
+                        ));
+                  },
                 ),
-              );
+    );
   }
 }

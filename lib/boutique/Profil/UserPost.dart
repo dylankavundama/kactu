@@ -5,7 +5,6 @@ import 'package:http/http.dart' as http;
 import 'package:kactu/Util/style.dart';
 import 'package:kactu/boutique/Profil/insert_data.dart';
 import 'package:kactu/boutique/login/authServices.dart';
-import 'package:kactu/boutique/login/login.dart';
 import 'package:kactu/nav.dart';
 
 class UserPost extends StatefulWidget {
@@ -30,13 +29,13 @@ class _UserPostState extends State<UserPost> {
     User? user = FirebaseAuth.instance.currentUser;
 
     if (user != null) {
-      var url = '$Adress_IP/actualite.php';
+      var url = '$Adress_IP/boutique.php';
       final uri = Uri.parse(url);
       final response = await http.get(uri);
       final List<dynamic> result = jsonDecode(response.body);
 
       post = result
-          .where((Actualite) => Actualite['auteur'] == user.displayName)
+          .where((boutique) => boutique['auteur'] == user.displayName)
           .toList();
 
       post.sort((a, b) => b["id"].compareTo(a["id"]));
@@ -76,7 +75,7 @@ class _UserPostState extends State<UserPost> {
 //delete
   Future<void> delrecord(String id) async {
     try {
-      var url = "$Adress_IP/profil/delete.php";
+      var url = "$Adress_IP/profil/del.php";
       var result = await http.post(Uri.parse(url), body: {"id": id});
       var reponse = jsonDecode(result.body);
       if (reponse["Success"] == "True") {
@@ -150,7 +149,7 @@ class _UserPostState extends State<UserPost> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Admin: ${userName ?? ''}',
+                      'Vendeur: ${userName ?? ''}',
                       style: TitreStyle,
                     ),
                     Text(
@@ -160,7 +159,7 @@ class _UserPostState extends State<UserPost> {
                   ],
                 ),
               ),
-              Divider(),
+              const Divider(),
               Center(
                 child: Text(
                   'Mes Publications',
@@ -216,7 +215,7 @@ class _UserPostState extends State<UserPost> {
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Text(
-                                          post[index]["titre"],
+                                          post[index]["nom"],
                                           maxLines: 1,
                                           textAlign: TextAlign.start,
                                           style: TitreStyle,
@@ -312,7 +311,7 @@ class _UserPostState extends State<UserPost> {
             ),
           );
         },
-        child: const Icon(Icons.add_business_outlined),
+        child: const Icon(Icons.add),
       ),
     );
   }

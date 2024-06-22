@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+// ignore: must_be_immutable
 class DetailPage extends StatefulWidget {
   DetailPage(
       {required this.desc,
@@ -35,21 +36,15 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
-  bool fav = false;
-
   //banniere actu
   BannerAd? _bannerAd;
-
   bool _isLoaded = false;
-
   final String _adUnitId = Platform.isAndroid
       ? 'ca-app-pub-6009510012427568/6089806483'
       : 'ca-app-pub-6009510012427568/6089806483';
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-
     _isLoaded = false;
     _loadAd();
   }
@@ -92,49 +87,9 @@ class _DetailPageState extends State<DetailPage> {
 
   bool isFavorite = false;
 
-  // Function to toggle favorite status
-  void toggleFavorite() async {
-    //  SharedPreferences prefs = await SharedPreferences.getInstance();
-    //   List<String> favorites = prefs.getStringList('favorites') ?? [];
-    jsonEncode({
-      'nom': widget.titre,
-      'detail': widget.desc,
-      'image1': widget.image1,
-      'image2': widget.image2,
-    });
-
-    // setState(() {
-    //   if (isFavorite) {
-    //     favorites.remove(currentData);
-    //   } else {
-    //     favorites.add(currentData);
-    //   }
-    //   prefs.setStringList('favorites', favorites);
-    //   isFavorite = !isFavorite;
-    // });
-  }
-
-  // Function to check if current item is favorite
-  void checkFavorite() async {
-    // SharedPreferences prefs = await SharedPreferences.getInstance();
-    //   List<String> favorites = prefs.getStringList('favorites') ?? [];
-    jsonEncode({
-      'nom': widget.titre,
-      'detail': widget.desc,
-      'image1': widget.image1,
-      'image2': widget.image2,
-      // Add more data if needed
-    });
-    setState(() {
-      //isFavorite = favorites.contains(currentData);
-    });
-  }
-
   @override
   void initState() {
     super.initState();
-    checkFavorite();
-    // _loadComments();
 
     _incrementViews();
     _fetchViews().then((views) {
@@ -181,13 +136,6 @@ class _DetailPageState extends State<DetailPage> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          // IconButton(
-          //   icon: Icon(
-          //     isFavorite ? Icons.favorite : Icons.favorite_border_sharp,
-          //     color: isFavorite ? Colors.teal : null,
-          //   ),
-          //   onPressed: toggleFavorite,
-          // ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -308,53 +256,6 @@ class _DetailPageState extends State<DetailPage> {
           ),
         ),
       ),
-      // bottomNavigationBar: SizedBox(
-      //   height: 73,
-      //   child: BottomAppBar(
-      //     color: Colors.white,
-      //     elevation: 0.0,
-      //     child: FittedBox(
-      //       fit: BoxFit.none,
-      //       child: ClipRRect(
-      //         borderRadius: BorderRadius.circular(10),
-      //         child: GestureDetector(
-      //           onTap: () {
-      //             Navigator.push(
-      //               context,
-      //               MaterialPageRoute(builder: (context) {
-      //                 return Channel();
-      //               }),
-      //             );
-      //           },
-      //           child: Container(
-      //             alignment: Alignment.center,
-      //             margin: const EdgeInsets.only(bottom: 6.0),
-      //             height: 46,
-      //             width: 186,
-      //             decoration: BoxDecoration(
-      //               color: CouleurPrincipale,
-      //               borderRadius: BorderRadius.circular(10),
-      //               boxShadow: const [
-      //                 BoxShadow(
-      //                   color: Colors.grey,
-      //                   offset: Offset(0.0, 1.0),
-      //                   blurRadius: 6.0,
-      //                 ),
-      //               ],
-      //             ),
-      //             child: const Text(
-      //               "Le Direct",
-      //               style: TextStyle(
-      //                   fontSize: 18,
-      //                   fontWeight: FontWeight.w600,
-      //                   color: Colors.white),
-      //             ),
-      //           ),
-      //         ),
-      //       ),
-      //     ),
-      //   ),
-      //   ),
     );
   }
 }
@@ -472,28 +373,3 @@ class CustomListTile extends StatelessWidget {
     );
   }
 }
-
-// class FullScreenImagePage extends StatelessWidget {
-//   final String imageUrl;
-
-//   const FullScreenImagePage({super.key, required this.imageUrl});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: GestureDetector(
-//         onTap: () {
-//           Navigator.of(context).pop();
-//         },
-//         child: Container(
-//           color: Colors.white,
-//           child: PhotoView(
-//             imageProvider: NetworkImage(imageUrl),
-//             minScale: PhotoViewComputedScale.contained,
-//             maxScale: PhotoViewComputedScale.covered * 2,
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }

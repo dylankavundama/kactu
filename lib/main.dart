@@ -5,12 +5,13 @@ import 'package:flutter/services.dart';
 import 'package:kactu/Util/style.dart';
 import 'package:kactu/loader.dart';
 import 'HomePage.dart';
-import 'nav.dart'; 
+import 'nav.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
+
 // import 'package:flutter_native_splash/flutter_native_splash.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-   MobileAds.instance.initialize();
+  MobileAds.instance.initialize();
 
   await Firebase.initializeApp();
   await Future.delayed(const Duration(seconds: 1));
@@ -21,7 +22,7 @@ void main() async {
       statusBarBrightness: Brightness.light,
     ),
   );
-    OneSignal.shared.setAppId("c2f6248a-3c61-4381-a341-c6aa815cca8d");
+  OneSignal.shared.setAppId("c2f6248a-3c61-4381-a341-c6aa815cca8d");
 
   OneSignal.shared.setNotificationWillShowInForegroundHandler(
       (OSNotificationReceivedEvent event) {});
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
             ColorScheme.fromSwatch().copyWith(secondary: CouleurPrincipale),
       ),
       debugShowCheckedModeBanner: false,
-      home:  const Loading(),
+      home: const Loading(),
     );
   }
 }

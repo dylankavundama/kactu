@@ -90,7 +90,6 @@ class _Widget_UIState extends State<Widget_UI> {
 
   @override
   Widget build(BuildContext context) {
-    final ww = MediaQuery.of(context).size.width;
     String displayedText = widget.titre.length <= widget.maxLength
         ? widget.titre
         : '${widget.titre.substring(0, widget.maxLength)}...';

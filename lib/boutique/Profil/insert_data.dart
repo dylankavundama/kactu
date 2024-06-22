@@ -53,7 +53,6 @@ class _Inset_DataState extends State<Inset_Data> {
       var url = "$Adress_IP/profil/add.php";
       Uri ulr = Uri.parse(url);
       var request = http.MultipartRequest('POST', ulr);
-
       request.fields['nom'] = nom.text;
       request.fields['detail'] = detail.text;
       request.fields['prix'] = prix.text;
@@ -191,7 +190,8 @@ class _Inset_DataState extends State<Inset_Data> {
                   padding: EdgeInsets.only(top: 10),
                 ),
                 TextField(
-                  keyboardType: TextInputType.text,
+                  maxLength: 9,
+                  keyboardType: TextInputType.number,
                   controller: num,
                   decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.web),
@@ -200,14 +200,14 @@ class _Inset_DataState extends State<Inset_Data> {
                           Radius.circular(4),
                         ),
                       ),
-                      hintText: "Whatsapp",
+                      hintText: "Exemple :976736700",
                       labelText: "Numero"),
                 ),
                 const Padding(
                   padding: EdgeInsets.only(top: 10),
                 ),
                 TextField(
-                  keyboardType: TextInputType.text,
+                  keyboardType: TextInputType.number,
                   controller: prix,
                   decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.web),
@@ -291,7 +291,7 @@ class _Inset_DataState extends State<Inset_Data> {
                     const SizedBox(width: 3),
                     GestureDetector(
                       onTap: () => _pickImage2(ImageSource.gallery),
-                      child: Container(
+                      child: SizedBox(
                         height: sreenh * 0.2,
                         width: sreenw * 0.45,
                         child: Center(
@@ -334,7 +334,7 @@ class _Inset_DataState extends State<Inset_Data> {
                       });
                       savadatas(
                         Entreprise(
-                          nom: detail.text.trim(),
+                          nom: nom.text.trim(),
                           detail: detail.text.trim(),
                           prix: prix.text.trim(),
                           num: num.text.trim(),
@@ -394,9 +394,9 @@ Entreprise _$EntrepriseFromJson(Map<String, dynamic> json) {
   return Entreprise(
     code: json['id'] as int,
     nom: json['nom'] as String,
-    num: json['num'] as String,
     detail: json['detail'] as String,
     prix: json['prix'] as String,
+    num: json['num'] as String,
   );
 }
 
