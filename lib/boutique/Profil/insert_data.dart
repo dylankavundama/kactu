@@ -7,8 +7,6 @@ import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:kactu/Util/style.dart';
 import 'package:kactu/boutique/Profil/UserPost.dart';
-import 'package:kactu/style.dart';
-import 'package:line_icons/line_icons.dart';
 
 import 'dart:core';
 
@@ -20,16 +18,12 @@ class Inset_Data extends StatefulWidget {
 
 class _Inset_DataState extends State<Inset_Data> {
   TextEditingController nom = TextEditingController();
-  TextEditingController prix = TextEditingController();
   TextEditingController detail = TextEditingController();
-  TextEditingController source = TextEditingController();
-  TextEditingController dateN = TextEditingController();
+  TextEditingController prix = TextEditingController();
+  TextEditingController num = TextEditingController();
 
   @override
   void initState() {
-    super.initState();
-
-    getrecord();
     super.initState();
   }
 
@@ -38,33 +32,15 @@ class _Inset_DataState extends State<Inset_Data> {
     super.dispose();
   }
 
-  late String idenseu = '6';
-  // ignore: prefer_typing_uninitialized_variables
-  var selectens;
-
   showToast({required String msg}) {
     return Fluttertoast.showToast(msg: msg);
   }
 
-  List dataens = [];
-  Future<void> getrecord() async {
-    var url = "$Adress_IP/categorie.php";
-    try {
-      var response = await http.get(Uri.parse(url));
-      setState(() {
-        dataens = jsonDecode(response.body);
-      });
-    } catch (e) {
-      print(e);
-    }
-  }
-
   Future<void> savadatas(Entreprise entreprise, String email) async {
     if (nom.text.isEmpty ||
-        prix.text.isEmpty ||
         detail.text.isEmpty ||
-        source.text.isEmpty ||
-        dateN.text.isEmpty) {
+        prix.text.isEmpty ||
+        num.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Vous avez un champ vide'),
@@ -74,16 +50,14 @@ class _Inset_DataState extends State<Inset_Data> {
       return;
     }
     try {
-      var url = "$Adress_IP/profil/ajouter.php";
+      var url = "$Adress_IP/profil/add.php";
       Uri ulr = Uri.parse(url);
       var request = http.MultipartRequest('POST', ulr);
 
-      request.fields['titre'] = nom.text;
-      request.fields['prix'] = prix.text;
-      request.fields['cat'] = idenseu;
-      request.fields['source'] = source.text;
+      request.fields['nom'] = nom.text;
       request.fields['detail'] = detail.text;
-      request.fields['dateN'] = dateN.text;
+      request.fields['prix'] = prix.text;
+      request.fields['num'] = num.text;
       request.fields['auteur'] = email; // Insert email here
       request.files.add(http.MultipartFile.fromBytes(
           'image1', File(_image!.path).readAsBytesSync(),
@@ -151,7 +125,7 @@ class _Inset_DataState extends State<Inset_Data> {
         backgroundColor: CouleurPrincipale,
         title: Text(
           ' ${user?.displayName ?? "Non défini"}',
-          style: TextStyle(fontSize: 15),
+          style: const TextStyle(fontSize: 15),
         ),
       ),
       body: SingleChildScrollView(
@@ -218,7 +192,7 @@ class _Inset_DataState extends State<Inset_Data> {
                 ),
                 TextField(
                   keyboardType: TextInputType.text,
-                  controller: source,
+                  controller: num,
                   decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.web),
                       border: OutlineInputBorder(
@@ -247,16 +221,6 @@ class _Inset_DataState extends State<Inset_Data> {
                 ),
                 const Padding(
                   padding: EdgeInsets.only(top: 10),
-                ),
-                TextField(
-                  controller: dateN,
-                  readOnly: true,
-                  onTap: () => _selectDate(context),
-                  decoration: const InputDecoration(
-                    hintText: 'Date',
-                    suffixIcon: Icon(Icons.calendar_today),
-                    border: OutlineInputBorder(),
-                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -358,17 +322,11 @@ class _Inset_DataState extends State<Inset_Data> {
                       borderRadius: BorderRadius.circular(10.0)),
                   color: CouleurPrincipale,
                   onPressed: () {
-                    if (idenseu.isEmpty) {
-                      showToast(msg: "y'a une case vide");
-                    } else if (source.text.isEmpty) {
+                    if (num.text.isEmpty) {
                       showToast(msg: "Y'a une case vide");
                     } else if (prix.text.isEmpty) {
                       showToast(msg: "ajouter le prix");
-                    } else if (dateN.text.isEmpty) {
-                      showToast(msg: "Y'a une case vide");
-                    } else if (detail.text.isEmpty &&
-                        idenseu.isEmpty &&
-                        source.text.isEmpty) {
+                    } else if (detail.text.isEmpty && num.text.isEmpty) {
                       showToast(msg: "Y'a une case vide");
                     } else {
                       setState(() {
@@ -376,11 +334,10 @@ class _Inset_DataState extends State<Inset_Data> {
                       });
                       savadatas(
                         Entreprise(
-                          titre: idenseu.trim(),
+                          nom: detail.text.trim(),
                           detail: detail.text.trim(),
                           prix: prix.text.trim(),
-                          source: source.text.trim(),
-                          dateN: source.text.trim(),
+                          num: num.text.trim(),
                         ),
                         FirebaseAuth.instance.currentUser?.displayName ?? '',
                       ).then((value) {
@@ -411,37 +368,21 @@ class _Inset_DataState extends State<Inset_Data> {
       ),
     );
   }
-
-  Future<void> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(1900),
-      lastDate: DateTime.now(),
-    );
-    if (picked != null && picked != DateTime.now()) {
-      setState(() {
-        dateN.text = picked.toString().substring(0, 10);
-      });
-    }
-  }
 }
 
 class Entreprise {
   int? code;
-  String? titre;
+  String? nom;
   String? detail;
   String? prix;
-  String? source;
-  String? dateN;
+  String? num;
 
   Entreprise({
     this.code,
-    this.titre,
+    this.nom,
     this.detail,
     this.prix,
-    this.source,
-    this.dateN,
+    this.num,
   });
 
   factory Entreprise.fromJson(Map<String, dynamic> json) =>
@@ -452,9 +393,8 @@ class Entreprise {
 Entreprise _$EntrepriseFromJson(Map<String, dynamic> json) {
   return Entreprise(
     code: json['id'] as int,
-    titre: json['titre'] as String,
-    source: json['source'] as String,
-    dateN: json['dateN'] as String,
+    nom: json['nom'] as String,
+    num: json['num'] as String,
     detail: json['detail'] as String,
     prix: json['prix'] as String,
   );
@@ -462,9 +402,8 @@ Entreprise _$EntrepriseFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$EntrepriseToJson(Entreprise instance) =>
     <String, dynamic>{
-      'titre': instance.titre,
+      'nom': instance.nom,
       'detail': instance.detail,
       'prix': instance.prix,
-      'source': instance.source,
-      'dateN': instance.dateN,
+      'num': instance.num,
     };

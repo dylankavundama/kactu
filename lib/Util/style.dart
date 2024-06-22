@@ -13,7 +13,7 @@ TextStyle TitreStyleWhite = GoogleFonts.abel(fontSize: 24, color: Colors.white);
 
 // ignore: non_constant_identifier_names
 TextStyle SousTStyle =
-    GoogleFonts.actor(fontSize: 18, color: Colors.green.shade400);
+    GoogleFonts.actor(fontSize: 18, color: Colors.black54);
 
 // ignore: non_constant_identifier_names
 TextStyle DescStyle = GoogleFonts.abel(fontSize: 18, color: Colors.black);
