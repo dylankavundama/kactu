@@ -3,12 +3,9 @@ import 'dart:io';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:kactu/Util/style.dart';
-import 'package:kactu/channel.dart';
 import 'package:line_icons/line_icon.dart';
-// import 'package:photo_view/photo_view.dart';
 import 'package:share/share.dart';
 import 'package:http/http.dart' as http;
-// import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -20,6 +17,7 @@ class DetailPage extends StatefulWidget {
       required this.image2,
       required this.titre,
       required this.date,
+      required this.source,
       categorie,
       required this.id,
       super.key});
@@ -27,6 +25,7 @@ class DetailPage extends StatefulWidget {
   String image2;
   String desc;
   String date;
+  String source;
   final String id;
   String titre;
   String auteur;
@@ -97,7 +96,7 @@ class _DetailPageState extends State<DetailPage> {
   void toggleFavorite() async {
     //  SharedPreferences prefs = await SharedPreferences.getInstance();
     //   List<String> favorites = prefs.getStringList('favorites') ?? [];
-    String currentData = jsonEncode({
+    jsonEncode({
       'nom': widget.titre,
       'detail': widget.desc,
       'image1': widget.image1,
@@ -119,7 +118,7 @@ class _DetailPageState extends State<DetailPage> {
   void checkFavorite() async {
     // SharedPreferences prefs = await SharedPreferences.getInstance();
     //   List<String> favorites = prefs.getStringList('favorites') ?? [];
-    String currentData = jsonEncode({
+    jsonEncode({
       'nom': widget.titre,
       'detail': widget.desc,
       'image1': widget.image1,
@@ -154,7 +153,7 @@ class _DetailPageState extends State<DetailPage> {
         "id": widget.id,
       });
     } catch (e) {
-      print('Failed to increment views: $e');
+      debugPrint('Failed to increment views: $e');
     }
   }
 
@@ -172,7 +171,7 @@ class _DetailPageState extends State<DetailPage> {
         return 0;
       }
     } catch (e) {
-      print('Failed to fetch views: $e');
+      debugPrint('Failed to fetch views: $e');
       return 0;
     }
   }
@@ -270,8 +269,22 @@ class _DetailPageState extends State<DetailPage> {
               Text(widget.desc, style: DescStyle),
 
               Text(widget.date, style: DescStyle),
+
               ListTile(
-              
+                onTap: () {
+                  // ignore: deprecated_member_use
+                  launch(widget.source);
+                },
+                leading: const Icon(Icons.web),
+                title: Text(
+                  "Lien: ${widget.source}",
+                  style: TextStyle(
+                      fontWeight: FontWeight.w400, color: CouleurPrincipale),
+                  textAlign: TextAlign.start,
+                ),
+                trailing: const Icon(Icons.architecture),
+              ),
+              ListTile(
                 leading: const Icon(Icons.person),
                 title: Text(
                   "Auteur : ${widget.auteur}",
@@ -346,6 +359,7 @@ class _DetailPageState extends State<DetailPage> {
   }
 }
 
+// ignore: camel_case_types
 class social extends StatelessWidget {
   const social({
     super.key,
@@ -360,24 +374,24 @@ class social extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        // ListTile(
-        //   onTap: () {
-        //     // ignore: deprecated_member_use
-        //     launch('https://${widget.source}');
-        //   },
-        //   leading: const Icon(Icons.web),
-        //   title: Text(
-        //     "Source : ${widget.source}",
-        //     style: const TextStyle(fontWeight: FontWeight.w400),
-        //     textAlign: TextAlign.start,
-        //   ),
-        //   trailing: const Icon(Icons.architecture),
-        // ),
+        ListTile(
+          onTap: () {
+            // ignore: deprecated_member_use
+            launch('https://${widget.source}');
+          },
+          leading: const Icon(Icons.web),
+          title: Text(
+            "Lien : ${widget.source}",
+            style: const TextStyle(fontWeight: FontWeight.w400),
+            textAlign: TextAlign.start,
+          ),
+          trailing: const Icon(Icons.architecture),
+        ),
         ListTile(
           trailing: const Icon(Icons.architecture),
           leading: const Icon(Icons.person),
           title: Text(
-            "Auteur : ${widget.auteur}",
+            "Publier par : ${widget.auteur}",
             style: DescStyle,
           ),
         ),

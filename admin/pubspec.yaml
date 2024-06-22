@@ -35,14 +35,14 @@ flutter:
     - assets/
     # - lib/assets/animations/splashscreen.json
   
-  fonts:
-    - family: Mulish
-      fonts:
-        # - asset: assets/fonts/Mulish-Light.ttf
-        # - asset: assets/fonts/Mulish-SemiBold.ttf
-    - family: AssetAudioPlayer
-      fonts:
-        - asset: fonts/AssetAudioPlayer.ttf
+  # fonts:
+  #   - family: Mulish
+  #     fonts:
+  #       # - asset: assets/fonts/Mulish-Light.ttf
+  #       # - asset: assets/fonts/Mulish-SemiBold.ttf
+  #   - family: AssetAudioPlayer
+  #     fonts:
+  #       - asset: fonts/AssetAudioPlayer.ttf
 flutter_native_splash:
   color: "#42a5f5"
   # image: assets/images/logo.png

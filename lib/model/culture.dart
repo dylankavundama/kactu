@@ -23,15 +23,7 @@ class _Culture_PageState extends State<Culture_Page> {
     setState(() {
       _isLoading = true;
     });
-    // SharedPreferences prefs = await SharedPreferences.getInstance();
-    // final cachedData = prefs.getString('entreprise_data');
-    // if (cachedData != null) {
-    //   setState(() {
-    //     post = jsonDecode(cachedData);
-    //     _isLoading = false;
-    //   });
-    //   return;
-    // }
+
     var url = "$Adress_IP/culture.php";
     final uri = Uri.parse(url);
     final response = await http.get(uri);
@@ -90,12 +82,14 @@ class _Culture_PageState extends State<Culture_Page> {
                               desc: post[index]['detail'],
                               image1: post[index]['image1'],
                               image2: post[index]['image2'],
+                              
+       source: post[index]['source'],
                             );
                           }),
                         );
                       },
                       child: Widget_UI(
-                          id: '',
+                        id: '',
                         date: post[index]['dateN'],
                         desc: post[index]['detail'],
                         titre: post[index]['titre'],

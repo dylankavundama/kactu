@@ -120,6 +120,7 @@ class _Actualite_PageState extends State<Actualite_Page> {
                                 MaterialPageRoute(builder: (context) {
                                   return DetailPage(
                                     date: post[index]['dateN'],
+                                    source: post[index]['source'],
                                     auteur: post[index]['auteur'],
                                     id: post[index]['id'],
                                     titre: post[index]['titre'],

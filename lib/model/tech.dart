@@ -87,6 +87,7 @@ class _Tech_PageState extends State<Tech_Page> {
                               auteur: post[index]['auteur'],
                               id: '',
                               titre: post[index]['titre'],
+                              source: post[index]['source'],
                               desc: post[index]['detail'],
                               image1: post[index]['image1'],
                               image2: post[index]['image2'],

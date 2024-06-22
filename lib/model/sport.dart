@@ -86,6 +86,8 @@ class _Sport_PageState extends State<Sport_Page> {
                               date: post[index]['dateN'],
                               auteur: post[index]['auteur'],
                               id: '',
+                              
+       source: post[index]['source'],
                               titre: post[index]['titre'],
                               desc: post[index]['detail'],
                               image1: post[index]['image1'],

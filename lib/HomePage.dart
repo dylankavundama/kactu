@@ -6,6 +6,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:kactu/Util/style.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'model/actualite.dart';
+import 'model/boutique.dart';
 import 'model/culture.dart';
 import 'model/event.dart';
 import 'model/sport.dart';
@@ -176,13 +177,13 @@ class _HomePageState extends State<HomePage>
     );
   }
 }
- 
 
 class NewWidget extends StatelessWidget {
   const NewWidget({
     Key? key,
     required List<String> images,
-  }) : _images = images, super(key: key);
+  })  : _images = images,
+        super(key: key);
 
   final List<String> _images;
 
@@ -232,4 +233,3 @@ class NewWidget extends StatelessWidget {
     );
   }
 }
-

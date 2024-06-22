@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:kactu/HomePage.dart';
+import 'package:kactu/nav.dart';
 
 class Loading extends StatefulWidget {
   const Loading({Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class _LoadingState extends State<Loading> {
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(
-        builder: (BuildContext context) => HomePage(),
+        builder: (BuildContext context) => NavBarPage(),
       ),
       (Route<dynamic> route) => false,
     );

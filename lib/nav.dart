@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kactu/HomePage.dart';
 import 'package:kactu/Util/style.dart';
+import 'package:kactu/boutique/login/login.dart';
 import 'package:kactu/channel.dart';
+import 'package:kactu/model/boutique.dart';
 
 class NavBarPage extends StatefulWidget {
   const NavBarPage({super.key});
@@ -13,8 +15,11 @@ class _NavBarPageState extends State<NavBarPage> {
   int currentindex = 0;
   NavigationDestinationLabelBehavior labelBehavior =
       NavigationDestinationLabelBehavior.alwaysShow;
-  List<Widget> screen = [HomePage(),
-  // Channel()
+  List<Widget> screen = [
+    HomePage(),
+    // Channel(),
+    const Boutique(),
+    const LoginHome(),
   ];
 
   @override
@@ -55,25 +60,38 @@ class _NavBarPageState extends State<NavBarPage> {
         },
         destinations: const <Widget>[
           NavigationDestination(
-            icon: Icon(Icons.home_outlined,size: 25,),
-            selectedIcon: Icon(Icons.home,size: 25,),
-            label: 'Actu',
+            icon: Icon(
+              Icons.home_outlined,
+              size: 25,
+            ),
+            selectedIcon: Icon(
+              Icons.home,
+              size: 25,
+            ),
+            label: 'Acceuil',
           ),
           NavigationDestination(
-            icon: Icon(Icons.tv,size: 25,),
-            selectedIcon: Icon(Icons.tv_outlined,size: 25,),
-            label: 'Tv',
+            icon: Icon(
+              Icons.shopping_cart_outlined,
+              size: 25,
+            ),
+            selectedIcon: Icon(
+              Icons.shopping_cart,
+              size: 25,
+            ),
+            label: 'Boutique',
           ),
-          // NavigationDestination(
-          //   icon: Icon(Icons.fastfood),
-          //   selectedIcon: Icon(Icons.receipt),
-          //   label: 'Reservation',
-          // ),
-          // NavigationDestination(
-          //   selectedIcon: Icon(Icons.account_box),
-          //   icon: Icon(Icons.person),
-          //   label: 'Compte',
-          // ),
+          NavigationDestination(
+            icon: Icon(
+              Icons.person_outlined,
+              size: 25,
+            ),
+            selectedIcon: Icon(
+              Icons.person,
+              size: 25,
+            ),
+            label: 'Profil',
+          ),
         ],
       ),
     );

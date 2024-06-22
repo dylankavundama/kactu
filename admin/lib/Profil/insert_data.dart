@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:admin_ib/Util/style.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -261,7 +262,7 @@ class _Inset_DataState extends State<Inset_Data> {
                           Radius.circular(4),
                         ),
                       ),
-                      hintText: "Source",
+                      hintText: "Source ou lien",
                       labelText: "source du post"),
                 ),
                 const Padding(
@@ -286,8 +287,7 @@ class _Inset_DataState extends State<Inset_Data> {
                     ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        primary:
-                            CouleurPrincipale, // Définir la couleur du bouton
+                        backgroundColor: CouleurPrincipale, // Définir la couleur du bouton
                         // Autres propriétés de style du bouton peuvent être définies ici
                       ),
                       child: Text(
@@ -299,8 +299,7 @@ class _Inset_DataState extends State<Inset_Data> {
                     const SizedBox(width: 4),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        primary:
-                            CouleurPrincipale, // Définir la couleur du bouton
+                        backgroundColor: CouleurPrincipale, // Définir la couleur du bouton
                         // Autres propriétés de style du bouton peuvent être définies ici
                       ),
                       child: Text(

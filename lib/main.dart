@@ -10,7 +10,7 @@ import 'package:onesignal_flutter/onesignal_flutter.dart';
 // import 'package:flutter_native_splash/flutter_native_splash.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  MobileAds.instance.initialize();
+   MobileAds.instance.initialize();
 
   await Firebase.initializeApp();
   await Future.delayed(const Duration(seconds: 1));

@@ -85,6 +85,8 @@ class _Event_PageState extends State<Event_Page> {
                             return DetailPage(
                               date: post[index]['dateN'],
                               auteur: post[index]['auteur'],
+                              
+       source: post[index]['source'],
                               id: '',
                               titre: post[index]['titre'],
                               desc: post[index]['detail'],
@@ -95,7 +97,7 @@ class _Event_PageState extends State<Event_Page> {
                         );
                       },
                       child: Widget_UI(
-                          id: '',
+                        id: '',
                         date: post[index]['dateN'],
                         desc: post[index]['detail'],
                         titre: post[index]['titre'],
