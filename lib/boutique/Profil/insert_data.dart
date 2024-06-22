@@ -9,9 +9,8 @@ import 'package:kactu/Util/style.dart';
 import 'package:kactu/boutique/Profil/UserPost.dart';
 import 'package:kactu/style.dart';
 import 'package:line_icons/line_icons.dart';
- 
+
 import 'dart:core';
- 
 
 class Inset_Data extends StatefulWidget {
   const Inset_Data({super.key});
@@ -21,6 +20,7 @@ class Inset_Data extends StatefulWidget {
 
 class _Inset_DataState extends State<Inset_Data> {
   TextEditingController nom = TextEditingController();
+  TextEditingController prix = TextEditingController();
   TextEditingController detail = TextEditingController();
   TextEditingController source = TextEditingController();
   TextEditingController dateN = TextEditingController();
@@ -61,6 +61,7 @@ class _Inset_DataState extends State<Inset_Data> {
 
   Future<void> savadatas(Entreprise entreprise, String email) async {
     if (nom.text.isEmpty ||
+        prix.text.isEmpty ||
         detail.text.isEmpty ||
         source.text.isEmpty ||
         dateN.text.isEmpty) {
@@ -78,6 +79,7 @@ class _Inset_DataState extends State<Inset_Data> {
       var request = http.MultipartRequest('POST', ulr);
 
       request.fields['titre'] = nom.text;
+      request.fields['prix'] = prix.text;
       request.fields['cat'] = idenseu;
       request.fields['source'] = source.text;
       request.fields['detail'] = detail.text;
@@ -192,8 +194,8 @@ class _Inset_DataState extends State<Inset_Data> {
                           Radius.circular(4),
                         ),
                       ),
-                      hintText: "Titre",
-                      labelText: "Titre du post"),
+                      hintText: "Jina",
+                      labelText: "Nom du produit"),
                 ),
                 const Padding(
                   padding: EdgeInsets.only(top: 10),
@@ -208,7 +210,7 @@ class _Inset_DataState extends State<Inset_Data> {
                           Radius.circular(4),
                         ),
                       ),
-                      hintText: "Detail",
+                      hintText: "Ma detaile",
                       labelText: "Description"),
                 ),
                 const Padding(
@@ -224,8 +226,24 @@ class _Inset_DataState extends State<Inset_Data> {
                           Radius.circular(4),
                         ),
                       ),
-                      hintText: "Source ou lien",
-                      labelText: "source du post"),
+                      hintText: "Whatsapp",
+                      labelText: "Numero"),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(top: 10),
+                ),
+                TextField(
+                  keyboardType: TextInputType.text,
+                  controller: prix,
+                  decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.web),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(4),
+                        ),
+                      ),
+                      hintText: "Bei",
+                      labelText: "Prix"),
                 ),
                 const Padding(
                   padding: EdgeInsets.only(top: 10),
@@ -235,7 +253,7 @@ class _Inset_DataState extends State<Inset_Data> {
                   readOnly: true,
                   onTap: () => _selectDate(context),
                   decoration: const InputDecoration(
-                    hintText: 'Selectionner la  Date',
+                    hintText: 'Date',
                     suffixIcon: Icon(Icons.calendar_today),
                     border: OutlineInputBorder(),
                   ),
@@ -344,6 +362,8 @@ class _Inset_DataState extends State<Inset_Data> {
                       showToast(msg: "y'a une case vide");
                     } else if (source.text.isEmpty) {
                       showToast(msg: "Y'a une case vide");
+                    } else if (prix.text.isEmpty) {
+                      showToast(msg: "ajouter le prix");
                     } else if (dateN.text.isEmpty) {
                       showToast(msg: "Y'a une case vide");
                     } else if (detail.text.isEmpty &&
@@ -358,6 +378,7 @@ class _Inset_DataState extends State<Inset_Data> {
                         Entreprise(
                           titre: idenseu.trim(),
                           detail: detail.text.trim(),
+                          prix: prix.text.trim(),
                           source: source.text.trim(),
                           dateN: source.text.trim(),
                         ),
@@ -410,6 +431,7 @@ class Entreprise {
   int? code;
   String? titre;
   String? detail;
+  String? prix;
   String? source;
   String? dateN;
 
@@ -417,6 +439,7 @@ class Entreprise {
     this.code,
     this.titre,
     this.detail,
+    this.prix,
     this.source,
     this.dateN,
   });
@@ -428,17 +451,20 @@ class Entreprise {
 
 Entreprise _$EntrepriseFromJson(Map<String, dynamic> json) {
   return Entreprise(
-      code: json['id'] as int,
-      titre: json['titre'] as String,
-      source: json['source'] as String,
-      dateN: json['dateN'] as String,
-      detail: json['detail'] as String);
+    code: json['id'] as int,
+    titre: json['titre'] as String,
+    source: json['source'] as String,
+    dateN: json['dateN'] as String,
+    detail: json['detail'] as String,
+    prix: json['prix'] as String,
+  );
 }
 
 Map<String, dynamic> _$EntrepriseToJson(Entreprise instance) =>
     <String, dynamic>{
       'titre': instance.titre,
       'detail': instance.detail,
+      'prix': instance.prix,
       'source': instance.source,
       'dateN': instance.dateN,
     };
