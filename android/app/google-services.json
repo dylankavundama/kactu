@@ -46,14 +46,6 @@
           }
         },
         {
-          "client_id": "124674383326-tabqs0dn4i2ndja4if16aqgc1n5fbq65.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.kactu",
-            "certificate_hash": "ed6c3de7008291af9d1e1745c2ae91787cd3da2b"
-          }
-        },
-        {
           "client_id": "124674383326-5dpeos4ktipjua4f8bdia67avc5d04bo.apps.googleusercontent.com",
           "client_type": 3
         }
