@@ -12,7 +12,52 @@
           "package_name": "com.kactu"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "124674383326-6stfvvqmu689pe3im8o4eglnidp4i4u7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kactu",
+            "certificate_hash": "e061ef5a25008732b284447a8cb1fdc7b8f06637"
+          }
+        },
+        {
+          "client_id": "124674383326-d10uve8b08f8nstnejcagvjsqokgpml4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kactu",
+            "certificate_hash": "96d4671fbd3991b5717e1ee01003feafeef9c71d"
+          }
+        },
+        {
+          "client_id": "124674383326-gic051f2bh84pj7471v0v72pl8eenh59.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kactu",
+            "certificate_hash": "05c456a36c31667d27e4c33c823ff95f5fc23a34"
+          }
+        },
+        {
+          "client_id": "124674383326-kjnjib1kt6ts82d1sd73dvr5mdqrheut.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kactu",
+            "certificate_hash": "8694347a3a88ad6387d758d31d27e6053ab59133"
+          }
+        },
+        {
+          "client_id": "124674383326-tabqs0dn4i2ndja4if16aqgc1n5fbq65.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kactu",
+            "certificate_hash": "ed6c3de7008291af9d1e1745c2ae91787cd3da2b"
+          }
+        },
+        {
+          "client_id": "124674383326-5dpeos4ktipjua4f8bdia67avc5d04bo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCjkTHxWIZ95S1tKWhaZUI0WmJMmnlaTYw"
@@ -20,7 +65,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "124674383326-5dpeos4ktipjua4f8bdia67avc5d04bo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
