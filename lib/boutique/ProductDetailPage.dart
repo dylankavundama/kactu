@@ -57,7 +57,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
     }
   }
 
-  //banniere actu
+
   //banniere actu
   BannerAd? _bannerAd;
   bool _isLoaded = false;

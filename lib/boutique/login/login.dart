@@ -56,9 +56,17 @@ class _LoginHomeState extends State<LoginHome> {
                 'https://www.fpmarkets.com/assets/images/blogs/shutterstock_2014628297.webp',
               ),
               Center(
-                child: Text(
-                  '    Bienvenue sur kasindi actu market ',
-                  style: TitreStyle,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      '   Bienvenue sur KACTU Market ',
+                      style: TitreStyle,
+                    ),
+
+
+                    const Icon(Icons.shopping_cart_outlined)
+                  ],
                 ),
               ),
 
@@ -66,7 +74,7 @@ class _LoginHomeState extends State<LoginHome> {
                 padding: const EdgeInsets.all(8.0),
                 child: Center(
                   child: Text(
-                    "L'espace dédié pour les vente ",
+                    "L'espace dédié aux vendeurs ",
                     textAlign: TextAlign.center,
                     style: DescStyle,
                   ),
@@ -88,8 +96,8 @@ class _LoginHomeState extends State<LoginHome> {
                                 CouleurPrincipale, // Couleur de fond ajoutée ici
                             borderRadius: BorderRadius.circular(4),
                           ),
-                          width: MediaQuery.of(context).size.width * 0.8,
-                          height: MediaQuery.of(context).size.height * 0.053,
+                          width: MediaQuery.of(context).size.width * 0.6,
+                          height: MediaQuery.of(context).size.height * 0.050,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -103,7 +111,7 @@ class _LoginHomeState extends State<LoginHome> {
                                 child: Text(
                                   'Créer une boutique',
                                   style: GoogleFonts.abel(
-                                      fontSize: 23,
+                                      fontSize: 20,
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold),
                                 ),

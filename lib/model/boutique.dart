@@ -57,13 +57,19 @@ class _BoutiqueState extends State<Boutique> {
               ),
             )
           : post.isEmpty
-              ? Center(
-                  child: Image.asset(
-                    'assets/error.png', // Chemin de votre image
-                    width: 200,
-                    height: 200,
-                  ),
-                )
+              ? Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Aucune donner retrouver',style: TitreStyle,),
+                  Center(
+                      child: Image.asset(
+                        'assets/error.png', // Chemin de votre image
+                        width: 200,
+                        height: 200,
+                      ),
+                    ),
+                ],
+              )
               : GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2, // Number of items per row

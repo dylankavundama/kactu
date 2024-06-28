@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:kactu/HomePage.dart';
 import 'package:kactu/UI.dart';
 import 'package:kactu/detailpage.dart';
@@ -41,13 +43,50 @@ class _Actualite_PageState extends State<Actualite_Page> {
       throw Exception('Failed to load data');
     }
   }
-
+  bool _isLoaded = false;
   @override
   void initState() {
     super.initState();
     fetchPosts();
   }
+  //banniere actu
+  final String _adUnitId = Platform.isAndroid
+      ? 'ca-app-pub-6009510012427568/6089806483'
+      : 'ca-app-pub-6009510012427568/6089806483';
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _loadAd();
+  }
 
+  void _loadAd() async {
+    final size = await AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(
+        MediaQuery.of(context).size.width.truncate());
+
+    if (size == null) {
+      return;
+    }
+
+    BannerAd(
+      adUnitId: _adUnitId,
+      request: const AdRequest(),
+      size: size,
+      listener: BannerAdListener(
+        onAdLoaded: (ad) {
+          setState(() {
+          });
+        },
+        onAdFailedToLoad: (ad, err) {
+          ad.dispose();
+        },
+        onAdOpened: (Ad ad) {},
+        onAdClosed: (Ad ad) {},
+        onAdImpression: (Ad ad) {},
+      ),
+    ).load();
+  }
+  bool isFavorite = false;
+  BannerAd? _bannerAd;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,6 +136,21 @@ class _Actualite_PageState extends State<Actualite_Page> {
                           'assets/art/d.jpg',
                           'assets/art/e.jpg',
                         ]),
+                                      Stack(
+                children: [
+                  if (_bannerAd != null && _isLoaded)
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: SafeArea(
+                        child: SizedBox(
+                          width: _bannerAd!.size.width.toDouble(),
+                          height: _bannerAd!.size.height.toDouble(),
+                          child: AdWidget(ad: _bannerAd!),
+                        ),
+                      ),
+                    ),
+                ],
+              ),
                         // Row(
                         //   mainAxisAlignment: MainAxisAlignment.start,
                         //   crossAxisAlignment: CrossAxisAlignment.start,
