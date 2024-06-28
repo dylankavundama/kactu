@@ -25,28 +25,7 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.white,
-      //   title: Row(
-      //     mainAxisAlignment: MainAxisAlignment.center,
-      //     crossAxisAlignment: CrossAxisAlignment.center,
-      //     children: [
-      //       Text(
-      //         'IB',
-      //         style: TextStyle(color: CouleurPrincipale),
-      //       ),
-      //       const Padding(
-      //         padding: EdgeInsets.only(right: 0),
-      //       ),
-      //       const Text(
-      //         'APP',
-      //         style: TextStyle(color: Colors.black),
-      //       ),
-      //     ],
-      //   ),
-      //   centerTitle: true,
-      //   elevation: 1,
-      // ),
+
       bottomSheet: screen[currentindex],
       bottomNavigationBar: NavigationBar(
         backgroundColor: Colors.white,

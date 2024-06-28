@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "124674383326",
+    "firebase_url": "https://kactu-dfbc9-default-rtdb.firebaseio.com",
     "project_id": "kactu-dfbc9",
     "storage_bucket": "kactu-dfbc9.appspot.com"
   },
@@ -14,27 +15,19 @@
       },
       "oauth_client": [
         {
-          "client_id": "124674383326-6stfvvqmu689pe3im8o4eglnidp4i4u7.apps.googleusercontent.com",
+          "client_id": "124674383326-0tdgf2igm51l0dtd3urbu0kafdp9n5hh.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.kactu",
-            "certificate_hash": "e061ef5a25008732b284447a8cb1fdc7b8f06637"
+            "certificate_hash": "6f2e295c46194d33e3d4f73f20c50cbc16f9065d"
           }
         },
         {
-          "client_id": "124674383326-d10uve8b08f8nstnejcagvjsqokgpml4.apps.googleusercontent.com",
+          "client_id": "124674383326-gqhmctur8d8e07iensseltj3e6fte9u1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.kactu",
-            "certificate_hash": "96d4671fbd3991b5717e1ee01003feafeef9c71d"
-          }
-        },
-        {
-          "client_id": "124674383326-gic051f2bh84pj7471v0v72pl8eenh59.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.kactu",
-            "certificate_hash": "05c456a36c31667d27e4c33c823ff95f5fc23a34"
+            "certificate_hash": "b701c278b09c483c8ae8d317d86f481ea050f458"
           }
         },
         {

@@ -23,6 +23,7 @@ class _TestState extends State<Test> {
           Row(
             children: [
               NewWidget(
+                nn: 'ttt',
                 nom: 'Twat',
               ),
             ],
@@ -33,16 +34,28 @@ class _TestState extends State<Test> {
   }
 }
 
+// ignore: must_be_immutable
 class NewWidget extends StatelessWidget {
-  NewWidget({super.key, required this.nom});
+  NewWidget({super.key, required this.nom, required this.nn});
   String nom;
+
+  String nn;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        height: MediaQuery.of(context).size.height * 0.40,
-        color: Colors.orange,
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          TextFormField(),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.40,
+              color: Colors.orange,
+            ),
+          ),
+        ],
       ),
     );
   }

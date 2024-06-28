@@ -12,7 +12,6 @@ import 'package:onesignal_flutter/onesignal_flutter.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
-
   await Firebase.initializeApp();
   await Future.delayed(const Duration(seconds: 1));
   // FlutterNativeSplash.remove();

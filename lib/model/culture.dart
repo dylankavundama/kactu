@@ -2,11 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:kactu/UI.dart';
 import 'package:kactu/detailpage.dart';
-
 import 'package:http/http.dart' as http;
-
 import '../Util/style.dart';
-
 class Culture_Page extends StatefulWidget {
   const Culture_Page({super.key});
 
