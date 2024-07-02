@@ -49,7 +49,7 @@ class _LoginHomeState extends State<LoginHome> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Padding(
-                padding: EdgeInsets.only(top: 60),
+                padding: EdgeInsets.only(top: 90),
               ),
               Image.network(
                 height: MediaQuery.of(context).size.height * 0.4,
@@ -65,7 +65,7 @@ class _LoginHomeState extends State<LoginHome> {
                     ),
 
 
-                    const Icon(Icons.shopping_cart_outlined)
+                      Icon(Icons.shopping_cart_outlined,color: CouleurPrincipale,)
                   ],
                 ),
               ),

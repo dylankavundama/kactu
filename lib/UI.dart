@@ -150,7 +150,7 @@ class _Widget_UIState extends State<Widget_UI> {
                 const url =
                     'https://play.google.com/store/apps/details?id=com.kactu';
                 Share.share(
-                    "Actu :${widget.titre}},\n Description :${widget.desc}\n Telecharger l'Application IB App\n$url");
+                    "✨✨✨KACTU✨✨✨ :${widget.titre},\n Description :${widget.desc}\n Telecharger l'Application Kactu pour plus d'info\n$url");
               },
               child: Text(
                 '',
@@ -158,11 +158,11 @@ class _Widget_UIState extends State<Widget_UI> {
               ),
             ),
             TextButton(
-              onPressed: () {
+                 onPressed: () {
                 const url =
                     'https://play.google.com/store/apps/details?id=com.kactu';
                 Share.share(
-                    "Actu :${widget.titre}},\n Description :${widget.desc}\n Telecharger l'Application IB App\n$url");
+                    "✨✨✨KACTU✨✨✨ :${widget.titre},\n Description :${widget.desc}\n Telecharger l'Application Kactu pour plus d'info\n$url");
               },
               child: Text(
                 'Partager',

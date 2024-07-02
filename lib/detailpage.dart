@@ -147,12 +147,12 @@ class _DetailPageState extends State<DetailPage> {
             ],
           ),
           IconButton(
-            onPressed: () {
-              const url =
-                  'https://play.google.com/store/apps/details?id=com.kactu';
-              Share.share(
-                  "Actu :$widget.titre},\n Description :${widget.desc}\n Telecharger l'Application IB App\n$url");
-            },
+                onPressed: () {
+                const url =
+                    'https://play.google.com/store/apps/details?id=com.kactu';
+                Share.share(
+                    "✨✨KACTU✨✨ :${widget.titre},\n Description :${widget.desc}\n Telecharger l'Application Kactu pour plus d'info✅✅\n$url");
+              },
             icon: const LineIcon(Icons.share_sharp),
           )
         ],
@@ -235,7 +235,7 @@ class _DetailPageState extends State<DetailPage> {
               ListTile(
                 leading: const Icon(Icons.person),
                 title: Text(
-                  "Auteur : ${widget.auteur}",
+                  "Publier Par : ${widget.auteur}",
                   style: DescStyle,
                 ),
               ),
@@ -286,7 +286,7 @@ class social extends StatelessWidget {
             style: const TextStyle(fontWeight: FontWeight.w400),
             textAlign: TextAlign.start,
           ),
-          trailing: const Icon(Icons.architecture),
+          trailing: const Icon(Icons.web),
         ),
         ListTile(
           trailing: const Icon(Icons.architecture),

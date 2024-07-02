@@ -6,9 +6,9 @@ import 'package:kactu/HomePage.dart';
 import 'package:kactu/UI.dart';
 import 'package:kactu/detailpage.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import '../Util/style.dart';
 
-// ignore: camel_case_types
 class Actualite_Page extends StatefulWidget {
   const Actualite_Page({super.key});
 
@@ -16,7 +16,6 @@ class Actualite_Page extends StatefulWidget {
   State<Actualite_Page> createState() => _Actualite_PageState();
 }
 
-// ignore: camel_case_types
 class _Actualite_PageState extends State<Actualite_Page> {
   List<dynamic> post = [];
   bool _isLoading = false;
@@ -36,6 +35,7 @@ class _Actualite_PageState extends State<Actualite_Page> {
         post = resultat;
         _isLoading = false;
       });
+      savePostsLocally(resultat); // Save posts locally
     } else {
       setState(() {
         _isLoading = false;
@@ -43,16 +43,37 @@ class _Actualite_PageState extends State<Actualite_Page> {
       throw Exception('Failed to load data');
     }
   }
-  bool _isLoaded = false;
+
+  Future<void> savePostsLocally(List<dynamic> posts) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString('posts', jsonEncode(posts));
+  }
+
+  Future<void> loadPostsFromLocalStorage() async {
+    final prefs = await SharedPreferences.getInstance();
+    final String? postsString = prefs.getString('posts');
+    if (postsString != null) {
+      final List<dynamic> localPosts = jsonDecode(postsString);
+      setState(() {
+        post = localPosts;
+      });
+    }
+  }
+
   @override
   void initState() {
     super.initState();
+    _loadAd();
+    loadPostsFromLocalStorage(); // Load posts from local storage
     fetchPosts();
   }
-  //banniere actu
+
+  final bool _isLoaded = false;
+
   final String _adUnitId = Platform.isAndroid
       ? 'ca-app-pub-6009510012427568/6089806483'
       : 'ca-app-pub-6009510012427568/6089806483';
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -73,8 +94,7 @@ class _Actualite_PageState extends State<Actualite_Page> {
       size: size,
       listener: BannerAdListener(
         onAdLoaded: (ad) {
-          setState(() {
-          });
+          setState(() {});
         },
         onAdFailedToLoad: (ad, err) {
           ad.dispose();
@@ -85,14 +105,13 @@ class _Actualite_PageState extends State<Actualite_Page> {
       ),
     ).load();
   }
+
   bool isFavorite = false;
   BannerAd? _bannerAd;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text('Actualités'),
-      // ),
       body: _isLoading
           ? Center(
               child: CircularProgressIndicator(
@@ -136,35 +155,21 @@ class _Actualite_PageState extends State<Actualite_Page> {
                           'assets/art/d.jpg',
                           'assets/art/e.jpg',
                         ]),
-                                      Stack(
-                children: [
-                  if (_bannerAd != null && _isLoaded)
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: SafeArea(
-                        child: SizedBox(
-                          width: _bannerAd!.size.width.toDouble(),
-                          height: _bannerAd!.size.height.toDouble(),
-                          child: AdWidget(ad: _bannerAd!),
+                        Stack(
+                          children: [
+                            if (_bannerAd != null && _isLoaded)
+                              Align(
+                                alignment: Alignment.bottomCenter,
+                                child: SafeArea(
+                                  child: SizedBox(
+                                    width: _bannerAd!.size.width.toDouble(),
+                                    height: _bannerAd!.size.height.toDouble(),
+                                    child: AdWidget(ad: _bannerAd!),
+                                  ),
+                                ),
+                              ),
+                          ],
                         ),
-                      ),
-                    ),
-                ],
-              ),
-                        // Row(
-                        //   mainAxisAlignment: MainAxisAlignment.start,
-                        //   crossAxisAlignment: CrossAxisAlignment.start,
-                        //   children: [
-                        //     Padding(
-                        //       padding: const EdgeInsets.all(8.0),
-                        //       child: Container(
-                        //         width: 150,
-                        //         height: 50,
-                        //         color: Colors.red,
-                        //       ),
-                        //     ),
-                        //   ],
-                        // ),
                         ...List.generate(
                           post.length,
                           (index) => GestureDetector(

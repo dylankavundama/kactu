@@ -341,7 +341,7 @@ class _Inset_DataState extends State<Inset_Data> {
                         ),
                         FirebaseAuth.instance.currentUser?.displayName ?? '',
                       ).then((value) {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => const UserPost()));
                       }).whenComplete(() {
                         setState(() {

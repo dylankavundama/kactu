@@ -92,113 +92,124 @@ class _UserPostState extends State<UserPost> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(
-                builder: (context) => const NavBarPage(),
-              ),
-              (Route<dynamic> route) => false,
-            );
-          },
-          icon: const Icon(Icons.arrow_back),
-        ),
-        actions: [
-          Text("${mail}"),
-          IconButton(
+    return WillPopScope(
+            onWillPop: () async {
+        // Retourne true pour indiquer que vous avez géré le bouton de retour
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const NavBarPage(),
+          ),
+        );
+
+        return true;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
             onPressed: () {
-              AuthService().signOut().then((_) {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => const NavBarPage()),
-                );
-              });
+              Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(
+                  builder: (context) => const NavBarPage(),
+                ),
+                (Route<dynamic> route) => false,
+              );
             },
-            icon: const Icon(
-              Icons.logout_outlined,
-              color: Colors.redAccent,
-            ),
-          )
-        ],
-        iconTheme: IconThemeData(color: CouleurPrincipale),
-        backgroundColor: Colors.white,
-        title: Text(
-          'Ma Boutique',
-          style: DescStyle,
+            icon: const Icon(Icons.arrow_back),
+          ),
+          actions: [
+            Text("${mail}"),
+            IconButton(
+              onPressed: () {
+                AuthService().signOut().then((_) {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => const NavBarPage()),
+                  );
+                });
+              },
+              icon: const Icon(
+                Icons.logout_outlined,
+                color: Colors.redAccent,
+              ),
+            )
+          ],
+          iconTheme: IconThemeData(color: CouleurPrincipale),
+          backgroundColor: Colors.white,
+          title: Text(
+            'Ma Boutique',
+            style: DescStyle,
+          ),
         ),
-      ),
-      body: RefreshIndicator(
-        color: CouleurPrincipale,
-        onRefresh: _refresh,
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CircleAvatar(
-                  backgroundColor: CouleurPrincipale,
-                  radius: 33,
-                  backgroundImage: NetworkImage(userPhotoUrl ?? ''),
+        body: RefreshIndicator(
+          color: CouleurPrincipale,
+          onRefresh: _refresh,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CircleAvatar(
+                    backgroundColor: CouleurPrincipale,
+                    radius: 33,
+                    backgroundImage: NetworkImage(userPhotoUrl ?? ''),
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Vendeur: ${userName ?? ''}',
-                      style: TitreStyle,
-                    ),
-                    Text(
-                      'Mail: ${mail ?? ''}',
-                      style: DescStyle,
-                    ),
-                  ],
-                ),
-              ),
-              const Divider(),
-              Center(
-                child: Text(
-                  'Mes Publications',
-                  style: TitreStyle,
-                ),
-              ),
-              _isLoading
-                  ? Padding(
-                      padding: const EdgeInsets.only(top: 100),
-                      child: Center(
-                        child: CircularProgressIndicator(
-                          color: CouleurPrincipale,
-                        ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Vendeur: ${userName ?? ''}',
+                        style: TitreStyle,
                       ),
-                    )
-                  : post.isEmpty
-                      ? Padding(
-                          padding: const EdgeInsets.only(top: 111),
-                          child: Column(
-                            children: [
-                              Center(
-                                child: Image.asset(
-                                  'assets/error.png',
-                                  width: 200,
-                                  height: 200,
-                                ),
-                              ),
-                              Text(
-                                "Aucune donnée n'est enregistrée",
-                                style: SousTStyle,
-                              )
-                            ],
+                      Text(
+                        'Mail: ${mail ?? ''}',
+                        style: DescStyle,
+                      ),
+                    ],
+                  ),
+                ),
+                const Divider(),
+                Center(
+                  child: Text(
+                    'Mes Publications',
+                    style: TitreStyle,
+                  ),
+                ),
+                _isLoading
+                    ? Padding(
+                        padding: const EdgeInsets.only(top: 100),
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            color: CouleurPrincipale,
                           ),
-                        )
-                      : Column(
-                          children: List.generate(
-                            post.length,
-                            (index) => GestureDetector(
-                              child: Padding(
+                        ),
+                      )
+                    : post.isEmpty
+                        ? Padding(
+                            padding: const EdgeInsets.only(top: 111),
+                            child: Column(
+                              children: [
+                                Center(
+                                  child: Image.asset(
+                                    'assets/error.png',
+                                    width: 200,
+                                    height: 200,
+                                  ),
+                                ),
+                                Text(
+                                  "Aucune donnée n'est enregistrée",
+                                  style: SousTStyle,
+                                )
+                              ],
+                            ),
+                          )
+                        : Column(
+                            children: List.generate(
+                              post.length,
+                              (index) => Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Container(
                                   decoration: BoxDecoration(
@@ -298,20 +309,20 @@ class _UserPostState extends State<UserPost> {
                               ),
                             ),
                           ),
-                        ),
-            ],
+              ],
+            ),
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-              builder: (context) => const Inset_Data(),
-            ),
-          );
-        },
-        child: const Icon(Icons.add),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) => const Inset_Data(),
+              ),
+            );
+          },
+          child: const Icon(Icons.add),
+        ),
       ),
     );
   }

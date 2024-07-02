@@ -23,15 +23,7 @@ class _Tech_PageState extends State<Tech_Page> {
     setState(() {
       _isLoading = true;
     });
-    // SharedPreferences prefs = await SharedPreferences.getInstance();
-    // final cachedData = prefs.getString('entreprise_data');
-    // if (cachedData != null) {
-    //   setState(() {
-    //     post = jsonDecode(cachedData);
-    //     _isLoading = false;
-    //   });
-    //   return;
-    // }
+ 
     var url = "$Adress_IP/tech.php";
     final uri = Uri.parse(url);
     final response = await http.get(uri);

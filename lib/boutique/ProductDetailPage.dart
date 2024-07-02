@@ -134,7 +134,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(15.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -179,7 +179,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
               const SizedBox(height: 1.0),
               Row(
                 children: [
-                  const Icon(Icons.person_2),
+                  const Icon(Icons.person_3_outlined),
                   Text(
                     "Vendeur:${widget.auteur}",
                     style: SousTStyle,
