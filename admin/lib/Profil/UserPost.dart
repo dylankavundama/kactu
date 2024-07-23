@@ -1,13 +1,11 @@
 import 'dart:convert';
 import 'package:admin_ib/Util/style.dart';
-import 'package:admin_ib/login/authServices.dart';
-import 'package:admin_ib/login/login.dart';
+ 
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/services.dart';
+ 
 import 'package:http/http.dart' as http;
 import 'package:admin_ib/Profil/insert_data.dart';
-import 'package:admin_ib/style.dart';
+ 
 import '../detailpage.dart';
 
 class UserPost extends StatefulWidget {
@@ -20,56 +18,79 @@ class UserPost extends StatefulWidget {
 class _UserPostState extends State<UserPost> {
   List<dynamic> post = [];
   bool _isLoading = false;
-  String? userName;
-  String? userPhotoUrl;
-  String? mail;
+ 
 
-  fetchPosts() async {
+  // fetchPosts() async {
+  //   setState(() {
+  //     _isLoading = true;
+  //   });
+
+  //   User? user = FirebaseAuth.instance.currentUser;
+
+  //   if (user != null) {
+  //     var url = '$Adress_IP/actualite.php';
+  //     final uri = Uri.parse(url);
+  //     final response = await http.get(uri);
+  //     final List<dynamic> result = jsonDecode(response.body);
+
+  //     post = result
+  //         .where((Actualite) => Actualite['id'] == user.displayName)
+  //         .toList();
+
+  //     post.sort((a, b) => b["id"].compareTo(a["id"]));
+  //   } else {
+  //     // Handle if user is not logged in
+  //     // For example, navigate to login screen
+  //   }
+
+  //   setState(() {
+  //     _isLoading = false;
+  //   });
+  // }
+  // fetchUserData() {
+  //   User? user = FirebaseAuth.instance.currentUser;
+  //   if (user != null) {
+  //     setState(() {
+  //       userName = user.displayName;
+  //       userPhotoUrl = user.photoURL;
+  //       mail = user.email;
+  //     });
+  //   }
+  // }
+
+    Future<void> fetchPosts() async {
     setState(() {
       _isLoading = true;
     });
 
-    User? user = FirebaseAuth.instance.currentUser;
-
-    if (user != null) {
-      var url = '$Adress_IP/actualite.php';
-      final uri = Uri.parse(url);
-      final response = await http.get(uri);
-      final List<dynamic> result = jsonDecode(response.body);
-
-      post = result
-          .where((Actualite) => Actualite['auteur'] == user.displayName)
-          .toList();
-
-      post.sort((a, b) => b["id"].compareTo(a["id"]));
-    } else {
-      // Handle if user is not logged in
-      // For example, navigate to login screen
-    }
-
-    setState(() {
-      _isLoading = false;
-    });
-  }
-  fetchUserData() {
-    User? user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
+    var url = "$Adress_IP/actualite.php";
+    final uri = Uri.parse(url);
+    final response = await http.get(uri);
+    if (response.statusCode == 200) {
+      final List resultat = jsonDecode(response.body);
+      resultat.sort((a, b) => b["id"].compareTo(a["id"]));
       setState(() {
-        userName = user.displayName;
-        userPhotoUrl = user.photoURL;
-        mail = user.email;
+        post = resultat;
+        _isLoading = false;
       });
+      // savePostsLocally(resultat); // Save posts locally
+    } else {
+      setState(() {
+        _isLoading = false;
+      });
+      throw Exception('Failed to load data');
     }
   }
+  
   Future<void> _refresh() async {
     fetchPosts();
-    fetchUserData();
+    // fetchUserData();
   }
   @override
   void initState() {
     super.initState();
     fetchPosts();
-    fetchUserData();
+    // fetchUserData();
   }
 //delete
   Future<void> delrecord(String id) async {
@@ -79,10 +100,10 @@ class _UserPostState extends State<UserPost> {
       var reponse = jsonDecode(result.body);
       if (reponse["Success"] == "True") {
         debugPrint("record deleted");
-        fetchUserData();
+        fetchPosts();
       } else {
         debugPrint("Erreur de suppression");
-        fetchUserData();
+        fetchPosts();
       }
     } catch (e) {
       print(e);
@@ -112,15 +133,12 @@ class _UserPostState extends State<UserPost> {
           icon: const Icon(Icons.arrow_back),
         ),
         actions: [
-          Text("${mail}"),
+          // Text("${mail}"),
           IconButton(
-            onPressed: () {
-              AuthService().signOut().then((_) {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => LoginHome()),
-                );
-              });
-            },
+     onPressed: () {
+                // Navigate back to the login screen
+                Navigator.pop(context);
+              },
             icon: const Icon(
               Icons.logout_outlined,
               color: Colors.redAccent,
@@ -141,30 +159,30 @@ class _UserPostState extends State<UserPost> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CircleAvatar(
-                  backgroundColor: CouleurPrincipale,
-                  radius: 33,
-                  backgroundImage: NetworkImage(userPhotoUrl ?? ''),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Admin: ${userName ?? ''}',
-                      style: TitreStyle,
-                    ),
-                    Text(
-                      'Mail: ${mail ?? ''}',
-                      style: DescStyle,
-                    ),
-                  ],
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: CircleAvatar(
+              //     backgroundColor: CouleurPrincipale,
+              //     radius: 33,
+              //     backgroundImage: NetworkImage(userPhotoUrl ?? ''),
+              //   ),
+              // ),
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: Column(
+              //     crossAxisAlignment: CrossAxisAlignment.start,
+              //     children: [
+              //       Text(
+              //         'Admin: ${userName ?? ''}',
+              //         style: TitreStyle,
+              //       ),
+              //       Text(
+              //         'Mail: ${mail ?? ''}',
+              //         style: DescStyle,
+              //       ),
+              //     ],
+              //   ),
+              // ),
               Divider(),
               Center(
                 child: Text(

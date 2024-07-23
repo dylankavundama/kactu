@@ -21,13 +21,13 @@ void main() async {
       statusBarBrightness: Brightness.light,
     ),
   );
-  // OneSignal.shared.setAppId("c2f6248a-3c61-4381-a341-c6aa815cca8d");
+  OneSignal.shared.setAppId("c2f6248a-3c61-4381-a341-c6aa815cca8d");
 
-  // OneSignal.shared.setNotificationWillShowInForegroundHandler(
-  //     (OSNotificationReceivedEvent event) {});
-  // OneSignal.shared
-  //     .promptUserForPushNotificationPermission()
-  //     .then((accepted) {});
+  OneSignal.shared.setNotificationWillShowInForegroundHandler(
+      (OSNotificationReceivedEvent event) {});
+  OneSignal.shared
+      .promptUserForPushNotificationPermission()
+      .then((accepted) {});
   runApp(
     const MyApp(),
   );

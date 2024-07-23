@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:admin_ib/Util/style.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
@@ -9,7 +10,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:admin_ib/Profil/UserPost.dart';
 import 'dart:core';
-import 'package:admin_ib/style.dart';
 
 class Inset_Data extends StatefulWidget {
   const Inset_Data({super.key});
@@ -57,7 +57,7 @@ class _Inset_DataState extends State<Inset_Data> {
     }
   }
 
-  Future<void> savadatas(Entreprise entreprise, String email) async {
+  Future<void> savadatas(Entreprise entreprise) async {
     if (nom.text.isEmpty ||
         detail.text.isEmpty ||
         source.text.isEmpty ||
@@ -80,7 +80,7 @@ class _Inset_DataState extends State<Inset_Data> {
       request.fields['source'] = source.text;
       request.fields['detail'] = detail.text;
       request.fields['dateN'] = dateN.text;
-      request.fields['auteur'] = email; // Insert email here
+ 
       request.files.add(http.MultipartFile.fromBytes(
           'image1', File(_image!.path).readAsBytesSync(),
           filename: _image!.path));
@@ -138,17 +138,17 @@ class _Inset_DataState extends State<Inset_Data> {
   @override
   Widget build(BuildContext context) {
     final sreenh = MediaQuery.of(context).size.height;
-    User? user = FirebaseAuth.instance.currentUser;
+    // User? user = FirebaseAuth.instance.currentUser;
     final sreenw = MediaQuery.of(context).size.width;
 
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: CouleurPrincipale,
-        title: Text(
-          ' ${user?.displayName ?? "Non défini"}',
-          style: TextStyle(fontSize: 15),
-        ),
+        // title: Text(
+        //   ' ${user?.displayName ?? "Non défini"}',
+        //   style: TextStyle(fontSize: 15),
+        // ),
       ),
       body: SingleChildScrollView(
         child: Material(
@@ -209,7 +209,6 @@ class _Inset_DataState extends State<Inset_Data> {
                           onChanged: (value) {
                             selectens = value;
                             idenseu = selectens;
-                            print("Valeur: " + selectens);
                             setState(() {});
                           },
                         ),
@@ -287,7 +286,8 @@ class _Inset_DataState extends State<Inset_Data> {
                     ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: CouleurPrincipale, // Définir la couleur du bouton
+                        backgroundColor:
+                            CouleurPrincipale, // Définir la couleur du bouton
                         // Autres propriétés de style du bouton peuvent être définies ici
                       ),
                       child: Text(
@@ -299,7 +299,8 @@ class _Inset_DataState extends State<Inset_Data> {
                     const SizedBox(width: 4),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: CouleurPrincipale, // Définir la couleur du bouton
+                        backgroundColor:
+                            CouleurPrincipale, // Définir la couleur du bouton
                         // Autres propriétés de style du bouton peuvent être définies ici
                       ),
                       child: Text(
@@ -397,10 +398,13 @@ class _Inset_DataState extends State<Inset_Data> {
                           source: source.text.trim(),
                           dateN: source.text.trim(),
                         ),
-                        FirebaseAuth.instance.currentUser?.displayName ?? '',
+             
                       ).then((value) {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => const UserPost()));
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => const UserPost(),
+                          ),
+                        );
                       }).whenComplete(() {
                         setState(() {
                           _isLoading = false;
